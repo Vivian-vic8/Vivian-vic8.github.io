@@ -37,6 +37,11 @@
   .nav .print{margin-left:auto;flex:none;font-size:12.5px;font-weight:700;color:#fff;
     background:var(--policy);border:none;padding:7px 14px;border-radius:8px;cursor:pointer}
   .nav .print:hover{opacity:.9}
+  .nav-group{display:flex;align-items:center;gap:6px;flex:none}
+  .nav-gt{font-size:11.5px;font-weight:800;color:#0f172a;background:#eef2ff;padding:5px 11px;border-radius:8px;flex:none;letter-spacing:.5px;margin-right:2px}
+  .nav-group + .nav-group{margin-left:8px;padding-left:14px;border-left:1px solid var(--line)}
+  .sec-title.software::before{background:#db2777}
+  .sec-title.software .step{background:#db2777}
 
   .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
   section{scroll-margin-top:calc(var(--nav-h) + 14px);padding-top:14px}
@@ -246,18 +251,24 @@
 
 <!-- 顶部导航 -->
 <nav class="nav">
-  <div class="brand"><span class="logo"></span>半导体存储 · 复盘整合</div>
-  <a href="#overview" class="active">封面</a>
-  <a href="#framework">全市场框架</a>
-  <a href="#story">故事主线</a>
-  <a href="#process">六道工序</a>
-  <a href="#chain">总链路</a>
-  <a href="#glossary">名词对照</a>
-  <a href="#policy">政策催化</a>
-  <a href="#infra">算力基建</a>
-  <a href="#sectors">全板块·公司</a>
-  <a href="#defense">攻守转换</a>
-  <a href="#insight">投资要点</a>
+  <div class="brand"><span class="logo"></span>AI 产业链 · 复盘整合</div>
+  <div class="nav-group">
+    <span class="nav-gt">硬件篇 · AI 大脑工厂</span>
+    <a href="#overview" class="active">封面</a>
+    <a href="#framework">全市场框架</a>
+    <a href="#story">故事主线</a>
+    <a href="#process">六道工序</a>
+    <a href="#chain">总链路</a>
+    <a href="#glossary">名词对照</a>
+    <a href="#policy">政策催化</a>
+    <a href="#sectors">全板块·公司</a>
+    <a href="#defense">攻守转换</a>
+    <a href="#insight">投资要点</a>
+  </div>
+  <div class="nav-group">
+    <span class="nav-gt">软件篇 · AI 软件链路</span>
+    <a href="#software">AI 软件四层链路</a>
+  </div>
   <button class="print" onclick="window.print()">导出 / 打印 PDF</button>
 </nav>
 
@@ -266,7 +277,7 @@
   <div class="inner">
     <h1>盖一座「AI 大脑工厂」· 半导体存储产业链复盘整合</h1>
     <p>把「故事版逻辑链路」与「投资逻辑图」合成一页：用盖智算中心的故事串起所有板块，再逐层叠上政策催化、算力基建、代表公司与投资要点。顶部导航可跳转，右上角可导出 PDF。</p>
-    <span class="tag">故事总纲（第一层）✓　政策催化（第二层）✓　国产替代与个股（第三层）✓　交换机 / 算力已并入对应功能域 ＋ 洁净室·服务器·液冷·电源·功率半导体·铜连接·晶圆代工·设备零部件已补齐</span>
+    <span class="tag">故事总纲（第一层）✓　政策催化（第二层）✓　国产替代与个股（第三层）✓　交换机 / 算力已并入对应功能域 ＋ 洁净室·服务器·液冷·电源·功率半导体·铜连接·晶圆代工·设备零部件已补齐 ＋ AI 软件四层链路已并入软件篇</span>
   </div>
 </header>
 
@@ -803,6 +814,87 @@
   </section>
 
 
+  <!-- 软件篇 · AI 软件四层链路 -->
+  <section id="software">
+    <div class="sec-title software">AI 软件四层链路 <span class="step">软件篇 · 从地基到应用</span></div>
+    <div class="sec-sub">硬件篇盖好「AI 大脑工厂」，软件篇让这个大脑真正运转、产出服务与收入。软件产业链自下而上分四层：底层软件 → 大模型基座 → AI 应用（含 AIGC）→ 端侧 AI（跨软硬件）。颜色沿用「应用」玫瑰色，按层级 L1–L4 排列。</div>
+
+    <div class="lead" style="margin-bottom:18px">
+      <b>软硬件关系一句话：</b>硬件是「卖铲人」（确定性高、机构重仓，先涨），软件是「淘金者」（弹性大、主题驱动、业绩兑现慢，后涨）。传导双向：<b>应用爆发 → 算力需求 → 硬件扩产</b>（下游拉动上游）；<b>硬件降价普及 → 降低应用门槛</b>（上游反哺下游）。软件篇是科技进攻主线的<b>下游延伸 / 价值实现层</b>。
+    </div>
+
+    <div class="grid">
+
+      <div class="scard c-app">
+        <div class="hd"><span class="step">L1 底层</span><h3>底层软件（地基）</h3></div>
+        <div class="role">AI 框架、算力调度、数据要素、MaaS —— 所有上层应用的运行底座。</div>
+        <div class="seg"><div class="lab">AI 框架 / 大模型平台</div><div class="stocks">
+          <span class="st">科大讯飞002230 星火</span><span class="st">百度(文心·港股)</span><span class="st">阿里(通义·港股)</span><span class="st">腾讯(混元·港股)</span><span class="st">华为昇思(未上市)</span><span class="st">字节豆包(未上市)</span><span class="st">商汤(港股)</span>
+        </div></div>
+        <div class="seg"><div class="lab">算力调度 / 智算中心运营软件</div><div class="stocks">
+          <span class="st">中科曙光603019 曙光智算</span><span class="st">浪潮软件600756</span><span class="st">云赛智联600602 上海智算</span><span class="st">铜牛信息300895</span><span class="st">首都在线300846</span><span class="st">卓易信息688258</span>
+        </div></div>
+        <div class="seg"><div class="lab">数据要素 / 语料（AI 粮食）</div><div class="stocks">
+          <span class="st">海天瑞声688787</span><span class="st">拓尔思300229</span><span class="st">星环科技688031</span><span class="st">太极股份002368</span><span class="st">人民网603000</span><span class="st">新华网603888</span><span class="st">中文在线300364</span>
+        </div></div>
+        <div class="note"><b>逻辑：</b>框架决定生态话语权；数据要素是训练的"粮食"，多地建数据交易所、推语料券；智算运营软件随算力网落地放量。</div>
+      </div>
+
+      <div class="scard c-app">
+        <div class="hd"><span class="step">L2 基座</span><h3>大模型基座（大脑本体）</h3></div>
+        <div class="role">通用 / 多模态大模型，是 AI 应用的"发动机"。</div>
+        <div class="seg"><div class="lab">通用 LLM（A 股代表）</div><div class="stocks">
+          <span class="st lead"><b>科大讯飞</b>002230 星火</span><span class="st lead"><b>三六零</b>601360 智脑</span><span class="st lead"><b>昆仑万维</b>300418 天工</span>
+          <span class="st">拓尔思300229 拓天</span><span class="st">云从科技688327 从容</span><span class="st">汉王科技002362</span><span class="st">神州泰岳300002</span>
+        </div></div>
+        <div class="seg"><div class="lab">多模态 / 视觉大模型</div><div class="stocks">
+          <span class="st">当虹科技688039</span><span class="st">虹软科技688088</span><span class="st">科大讯飞(多模态)</span>
+        </div></div>
+        <div class="seg"><div class="lab">第一梯队（港股 / 未上市）</div><div class="stocks">
+          <span class="st">百度(港股)</span><span class="st">阿里(港股)</span><span class="st">腾讯(港股)</span><span class="st">华为(未上市)</span><span class="st">商汤(港股)</span><span class="st">智谱 / Kimi / DeepSeek / MiniMax(未上市)</span>
+        </div></div>
+        <div class="note"><b>逻辑：</b>大模型是 AI 应用的"底座"，谁掌握基座谁掌握生态。A 股以应用落地 + 垂直模型为主，纯基座龙头多在港股 / 未上市；DeepSeek 开源降低了应用门槛，反而利好下游应用层。</div>
+      </div>
+
+      <div class="scard c-app">
+        <div class="hd"><span class="step">L3 应用</span><h3>AI 应用（落地 · 含 AIGC）</h3></div>
+        <div class="role">把大模型能力封装成具体产品与服务，是最贴近用户的"价值实现层"。</div>
+        <div class="seg"><div class="lab">AI 办公 / 智能体 Agent</div><div class="stocks">
+          <span class="st lead"><b>金山办公</b>688111</span><span class="st">万兴科技300624</span><span class="st">福昕软件688095</span><span class="st">泛微网络603039</span><span class="st">致远互联688369</span><span class="st">用友网络600588</span><span class="st">鼎捷数智300378</span><span class="st">彩讯股份300634</span>
+        </div></div>
+        <div class="seg"><div class="lab">AI 编程 / 开发者工具</div><div class="stocks">
+          <span class="st">卓易信息688258</span><span class="st">普元信息688118</span><span class="st">新炬网络605398</span>
+        </div></div>
+        <div class="seg"><div class="lab">AI 金融 / 投顾</div><div class="stocks">
+          <span class="st">同花顺300033</span><span class="st">恒生电子600570</span><span class="st">指南针300803</span><span class="st">财富趋势688318</span><span class="st">顶点软件603383</span><span class="st">金证股份600446</span>
+        </div></div>
+        <div class="seg"><div class="lab">AI 医疗 / 教育</div><div class="stocks">
+          <span class="st">卫宁健康300253</span><span class="st">创业慧康300451</span><span class="st">润达医疗603108</span><span class="st">视源股份002841</span><span class="st">佳发教育300559</span><span class="st">世纪天鸿300654</span>
+        </div></div>
+        <div class="seg"><div class="lab">AI 内容 / AIGC（文 / 图 / 视频 / 音乐）</div><div class="stocks">
+          <span class="st">中文在线300364</span><span class="st">蓝色光标300058</span><span class="st">因赛集团300781</span><span class="st">捷成股份300182</span><span class="st">芒果超媒300413</span><span class="st">视觉中国000681</span><span class="st">万兴科技300624</span>
+        </div></div>
+        <div class="note"><b>AIGC 是什么：</b>AI 应用的一个子集，专指"用 AI 生成内容"（文本 / 图像 / 视频 / 代码）。2025–2026 最热方向是 <b>Agent 智能体</b>——让 AI 自主完成多步任务，是应用层从"对话"走向"执行"的关键跃迁。</div>
+      </div>
+
+      <div class="scard c-app">
+        <div class="hd"><span class="step">L4 端侧</span><h3>端侧 AI（跨软硬件）</h3></div>
+        <div class="role">AI 从云端下沉到手机 / PC / 眼镜 / 汽车，是"硬件终端 + 软件模型"的汇合点。</div>
+        <div class="seg"><div class="lab">边缘 AI 芯片（硬件侧）</div><div class="stocks">
+          <span class="st lead"><b>瑞芯微</b>603893 边缘SoC</span><span class="st">全志科技300458</span><span class="st">北京君正300223</span><span class="st">晶晨股份688099</span><span class="st">乐鑫科技688018</span><span class="st">寒武纪688256(边缘)</span>
+        </div></div>
+        <div class="seg"><div class="lab">端侧模型部署 / 推理框架（软件侧）</div><div class="stocks">
+          <span class="st">中科创达300496</span><span class="st">虹软科技688088</span><span class="st">诚迈科技300598</span>
+        </div></div>
+        <div class="seg"><div class="lab">AI 终端载体（消费电子）</div><div class="stocks">
+          <span class="st lead"><b>联想集团</b>(港股) AI PC龙头</span><span class="st">春秋电子603890 结构件</span><span class="st lead"><b>华勤技术</b>603296 ODM</span><span class="st">蓝思科技300433</span><span class="st">领益智造002600</span><span class="st">歌尔股份002241</span><span class="st">立讯精密002475</span><span class="st">传音控股688036</span>
+        </div></div>
+        <div class="note"><b>与硬件篇的关系：</b>端侧 AI 是软硬件的交汇——边缘 SoC（瑞芯微等）属硬件篇「工序② 计算芯片」，消费电子终端属硬件出口，端侧模型部署属软件。AIPC / AI 手机 / AI 眼镜让云端 AI 真正"装进用户口袋"，是 AI 应用从 B 端走向 C 端的最后一公里。</div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- 投资要点 -->
   <style>#defense .sec-title::before{background:#0f766e}#defense .sec-title .step{background:#0f766e}</style>
   <section id="defense">
@@ -932,7 +1024,7 @@
   </section>
 
   <footer>
-    本整合页由《AI大脑工厂·产业链故事版》与《投资逻辑图·政策到个股》合并，并扩充交换机/算力/半材等板块 · 数据口径截至 2026-08-14<br>
+    本整合页由《AI大脑工厂·产业链故事版》与《投资逻辑图·政策到个股》合并，并扩充交换机/算力/半材等板块，新增 AI 软件四层链路（软件篇） · 数据口径截至 2026-08-14<br>
     公司列举仅供逻辑梳理，不构成投资建议 · 投资有风险，决策需独立判断
   </footer>
 
