@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>半导体存储产业链 · 投资逻辑图（政策→算力基建→各板块→代表公司）</title>
+<style>
+  :root{
+    --bg:#f5f7fb;--card:#fff;--ink:#1f2937;--sub:#64748b;--line:#e5e9f2;
+    --policy:#0f766e;--infra:#1d4ed8;
+    --compute:#2563eb;--make:#d97706;--pack:#7c3aed;--transmit:#0d9488;--pcb:#16a34a;
+    --shadow:0 6px 20px rgba(30,41,59,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:60px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#0e7490 100%);color:#fff;
+    padding:48px 22px 44px;margin-bottom:30px}
+  header .inner{max-width:1180px;margin:0 auto}
+  header h1{font-size:30px;font-weight:800;letter-spacing:.4px;margin-bottom:10px}
+  header p{font-size:15px;opacity:.9;max-width:820px}
+  .legend{margin-top:16px;display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  .sec-title{font-size:20px;font-weight:800;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .sec-title::before{content:"";width:6px;height:20px;border-radius:3px;background:var(--infra)}
+
+  /* layer blocks */
+  .layer{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:0}
+  .layer .ttl{font-weight:800;font-size:14px;color:var(--policy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .layer.pol .ttl{color:var(--policy)} .layer.inf .ttl{color:var(--infra)}
+  .flowtags{display:flex;flex-wrap:wrap;gap:9px}
+  .ft{font-size:13px;background:#f1f5f9;color:#334155;padding:7px 13px;border-radius:9px;font-weight:600;border:1px solid #e8edf5}
+  .ft b{color:#0f172a}
+  .connector{text-align:center;color:var(--sub);font-size:22px;font-weight:800;margin:6px 0}
+
+  /* board grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  .bcard{border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;background:var(--card);box-shadow:var(--shadow);border-top:4px solid var(--c)}
+  .bcard h3{font-size:15.5px;font-weight:800;margin-bottom:2px}
+  .bcard .sub{font-size:12px;color:var(--sub);margin-bottom:9px;font-weight:600}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:7px;color:#fff;background:var(--c);margin-bottom:10px}
+  .bcard .seg{font-size:12.5px;color:#475569;margin:8px 0 5px;font-weight:700}
+  .stocks{display:flex;flex-wrap:wrap;gap:6px}
+  .st{font-size:11.5px;background:#f8fafc;border:1px solid #e8edf5;color:#1f2937;padding:3px 8px;border-radius:7px}
+  .st b{color:#b45309;font-weight:800}
+  .st.lead{background:#fff7ed;border-color:#fed7aa}
+  .st.lead b{color:#c2410c}
+
+  .c-compute{--c:var(--compute)} .c-make{--c:var(--make)}
+  .c-pack{--c:var(--pack)} .c-transmit{--c:var(--transmit)} .c-pcb{--c:var(--pcb)}
+
+  /* notes */
+  .notes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+  .note{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card);box-shadow:var(--shadow)}
+  .note h4{font-size:15px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .note h4 .i{width:8px;height:8px;border-radius:50%;background:var(--infra)}
+  .note ul{list-style:none;font-size:13.5px;color:#374151}
+  .note li{padding:5px 0 5px 16px;position:relative}
+  .note li::before{content:"";position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:#cbd5e1}
+  .note li b{color:#0f172a}
+  .rank{display:flex;align-items:center;gap:8px;margin:6px 0}
+  .rank .bar{height:9px;border-radius:5px;background:linear-gradient(90deg,#22c55e,#eab308,#ef4444)}
+
+  footer{text-align:center;color:var(--sub);font-size:12.5px;margin-top:34px;line-height:1.9}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}.notes{grid-template-columns:1fr}header h1{font-size:24px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <h1>半导体存储产业链 · 投资逻辑图</h1>
+    <p>从「政策」到「算力基建」到「六大板块」再到「代表公司」的完整传导链路——可导出、可用于复盘展示。</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--compute)"></i>算+记·存储</span>
+      <span><i class="dot" style="background:var(--make)"></i>造·设备材料</span>
+      <span><i class="dot" style="background:var(--pack)"></i>装+连·先进封装</span>
+      <span><i class="dot" style="background:var(--transmit)"></i>传·光通信</span>
+      <span><i class="dot" style="background:var(--pcb)"></i>当家·PCB</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 政策层 -->
+  <div class="layer pol">
+    <div class="ttl">① 政策源（确定性最高、最先落地）</div>
+    <div class="flowtags">
+      <span class="ft"><b>十五五规划</b>：集成电路列为新兴支柱产业</span>
+      <span class="ft"><b>AI+ 行动</b>：政治局会议定调智能经济</span>
+      <span class="ft"><b>算力网 4 万亿</b>：发改委 7/31 披露十五五新增直接投资</span>
+      <span class="ft"><b>上海「百千万」智算集群</b>：松江/临港/青浦十万卡级</span>
+      <span class="ft"><b>算力券/模型券/语料券</b>：补贴民企租算力</span>
+      <span class="ft"><b>专项债正面清单</b>：智算中心资本金比例提至 30%</span>
+      <span class="ft"><b>国家创投引导基金</b>：投早投小投硬科技</span>
+    </div>
+  </div>
+
+  <div class="connector">↓ 驱动</div>
+
+  <!-- 基建层 -->
+  <div class="layer inf">
+    <div class="ttl">② 算力基建（政策直接转化、capex 落地）</div>
+    <div class="flowtags">
+      <span class="ft"><b>智算中心</b>大规模建设</span>
+      <span class="ft"><b>AI 服务器</b>（GPU/NPU 整机）</span>
+      <span class="ft"><b>全国算力网 / 东数西算</b></span>
+      <span class="ft"><b>超节点集群</b>（国产算力突围路径）</span>
+      <span class="ft">云厂商资本开支：北美四大云厂 2026 合计 capex 预计约 <b>7000 亿美元</b></span>
+    </div>
+  </div>
+
+  <div class="connector">↓ 逐级传导：需要以下六大板块</div>
+
+  <!-- 板块层 -->
+  <div class="sec-title">③ 六大板块 · 代表公司</div>
+  <div class="grid">
+
+    <div class="bcard c-compute">
+      <h3>存储（算 + 记）</h3>
+      <div class="sub">AI 算力核心战略资源 · 超级周期</div>
+      <span class="badge">高弹性</span>
+      <div class="seg">晶圆制造双雄</div>
+      <div class="stocks"><span class="st lead"><b>长鑫科技</b> DRAM(过会)</span><span class="st lead"><b>长江存储</b> NAND(辅导)</span></div>
+      <div class="seg">设计 / 接口 / 模组</div>
+      <div class="stocks">
+        <span class="st"><b>兆易创新</b>603986</span><span class="st"><b>北京君正</b>300223</span>
+        <span class="st"><b>澜起科技</b>688008 内存接口</span><span class="st">普冉688766</span>
+        <span class="st">东芯688110</span><span class="st lead"><b>江波龙</b>301308</span>
+        <span class="st lead"><b>佰维存储</b>688525</span><span class="st">德明利001309</span><span class="st">香农芯创</span>
+      </div>
+    </div>
+
+    <div class="bcard c-compute">
+      <h3>计算芯片（国产 AI）</h3>
+      <div class="sub">替代英伟达 · 受 BIS 管制与生态制约</div>
+      <span class="badge">高预期差</span>
+      <div class="seg">AI GPU / DCU</div>
+      <div class="stocks">
+        <span class="st lead"><b>寒武纪</b>688256</span><span class="st lead"><b>海光信息</b>688041</span>
+        <span class="st"><b>华为昇腾</b>(未上市)</span><span class="st">景嘉微300474</span><span class="st">东芯(砺算)</span>
+      </div>
+      <div class="seg">互联 / ASIC</div>
+      <div class="stocks"><span class="st">澜起688008</span><span class="st">芯原股份</span><span class="st">翱捷科技</span></div>
+    </div>
+
+    <div class="bcard c-make">
+      <h3>设备 + 材料（造）</h3>
+      <div class="sub">扩产配套最确定 · 长鑫/长存 capex 刚性</div>
+      <span class="badge">高确定性</span>
+      <div class="seg">设备五虎 + 量测</div>
+      <div class="stocks">
+        <span class="st lead"><b>北方华创</b>002371</span><span class="st lead"><b>中微公司</b>688012</span>
+        <span class="st lead"><b>拓荆科技</b>688072</span><span class="st lead"><b>华海清科</b>688120</span>
+        <span class="st lead"><b>盛美上海</b>688082</span><span class="st">芯源微688037</span><span class="st">中科飞测</span>
+      </div>
+      <div class="seg">材料</div>
+      <div class="stocks">
+        <span class="st"><b>沪硅产业</b>688126 硅片</span><span class="st"><b>安集</b>688019 抛光液</span>
+        <span class="st"><b>华特</b>688268 特气</span><span class="st">江丰300666 靶材</span>
+        <span class="st">雅克002409</span><span class="st">彤程603650</span><span class="st">南大光电300346</span><span class="st">中船特气688146</span>
+      </div>
+    </div>
+
+    <div class="bcard c-pack">
+      <h3>先进封装（装 + 连）</h3>
+      <div class="sub">HBM / Chiplet / CPO 核心载体</div>
+      <span class="badge">高弹性</span>
+      <div class="seg">封测龙头（含 HBM 2.5D/3D）</div>
+      <div class="stocks">
+        <span class="st lead"><b>长电科技</b>600584</span><span class="st lead"><b>通富微电</b>002156</span>
+        <span class="st">华天002185</span><span class="st">深科技000021</span><span class="st">太极600667</span>
+        <span class="st">甬矽电子</span><span class="st">盛合晶微</span><span class="st">佰维688525</span>
+      </div>
+      <div class="seg">配套材料</div>
+      <div class="stocks"><span class="st">联瑞新材</span><span class="st">华海诚科</span><span class="st">德邦科技</span><span class="st">雅克(填充)</span></div>
+    </div>
+
+    <div class="bcard c-transmit">
+      <h3>光通信（传）</h3>
+      <div class="sub">AI 集群互联刚需 · 全球 capex 直接拉动</div>
+      <span class="badge">高确定性+出海</span>
+      <div class="seg">光模块 / CPO</div>
+      <div class="stocks">
+        <span class="st lead"><b>中际旭创</b>300308</span><span class="st lead"><b>新易盛</b>300502</span>
+        <span class="st"><b>天孚通信</b>300394</span><span class="st">光迅002281</span><span class="st">华工000988</span>
+      </div>
+      <div class="seg">光纤 / 光芯片</div>
+      <div class="stocks">
+        <span class="st">长飞601869</span><span class="st">亨通600487</span><span class="st">中天600522</span>
+        <span class="st">源杰688498</span><span class="st">仕佳光子</span><span class="st">长光华芯</span>
+      </div>
+    </div>
+
+    <div class="bcard c-pcb">
+      <h3>PCB（当家）</h3>
+      <div class="sub">AI 服务器骨架 · 高频高速板量价齐升</div>
+      <span class="badge">高确定性</span>
+      <div class="seg">高速 PCB / 载板</div>
+      <div class="stocks">
+        <span class="st lead"><b>沪电股份</b>002463</span><span class="st lead"><b>深南电路</b>002916</span>
+        <span class="st lead"><b>胜宏科技</b>300476</span><span class="st">东山002384</span><span class="st">景旺</span>
+      </div>
+      <div class="seg">覆铜板（上游基材）</div>
+      <div class="stocks"><span class="st"><b>生益科技</b>600183</span><span class="st">南亚新材</span><span class="st">华正新材</span></div>
+    </div>
+
+  </div>
+
+  <!-- 投资要点 -->
+  <div class="sec-title">④ 投资要点（我的分析）</div>
+  <div class="notes">
+    <div class="note">
+      <h4><span class="i"></span>确定性排序（从政策到业绩的传导强度）</h4>
+      <div class="rank"><span style="font-size:12.5px;width:140px">设备材料 / PCB</span><span class="bar" style="flex:1"></span><span style="font-size:12px">最确定·扩产配套</span></div>
+      <div class="rank"><span style="font-size:12.5px;width:140px">光模块</span><span class="bar" style="flex:1;background:linear-gradient(90deg,#22c55e,#eab308)"></span><span style="font-size:12px">确定+出海</span></div>
+      <div class="rank"><span style="font-size:12.5px;width:140px">存储 / 先进封装</span><span class="bar" style="flex:1;background:linear-gradient(90deg,#eab308,#ef4444)"></span><span style="font-size:12px">高弹性·周期</span></div>
+      <div class="rank"><span style="font-size:12.5px;width:140px">国产 AI 芯片</span><span class="bar" style="flex:1;background:#ef4444"></span><span style="font-size:12px">预期差最大</span></div>
+      <ul style="margin-top:8px">
+        <li>券商共识「四大高确定性环节」：<b>PCB、液冷、光模块、HVDC</b></li>
+        <li>新增变量：<b>Agentic AI（OpenClaw）</b>使 Token 消耗 7 倍级增长，CPU:GPU 配比向 1:1 回归 → 利好<b>内存接口（澜起）</b>与通用算力</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <h4><span class="i"></span>外部变量（决定链路的「松紧」）</h4>
+      <ul>
+        <li><b>BIS 出口管制</b>：卡高端 GPU/设备/EDA → 收紧时国产替代情绪升温，但高端供给受限</li>
+        <li><b>英伟达对华摇摆</b>：H20 禁了又放、B30 新特供；放开→云厂真有卡用→基建订单落地；收紧→国产 GPU 预期升温</li>
+        <li><b>FCC</b>：管通信/认证，主要影响<b>光模块/光纤</b>出口准入与检测认证</li>
+        <li>核心公式：<b>硬科技股价 = 国产替代情绪(看管制) + 全球真实需求(看英伟达/云厂 capex)</b></li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <h4><span class="i"></span>风险与节奏</h4>
+      <ul>
+        <li><b>周期不消失</b>：存储强周期，机构预测供给释放拐点约在 <b>2028 年</b>，此前价格高位震荡</li>
+        <li><b>传导时滞</b>：政策→基建(快)→板块订单(1-2 年)→业绩(滞后)；股价常提前透支预期</li>
+        <li><b>估值透支</b>：2026 上半年电子指数 +66%、半导体 +73%、元器件 +115%，需警惕预期抢跑</li>
+        <li>地缘冲突、国产替代不及预期、研发失败均为显性风险</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <h4><span class="i"></span>一句话投资逻辑</h4>
+      <ul>
+        <li><b>政策定方向、基建定节奏、板块定弹性、个股定收益。</b></li>
+        <li>沿链路找「<b>确定性最高的环节 + 弹性最大的短板</b>」：设备材料/PCB/光模块是<b>底仓确定性</b>，HBM/国产 AI 芯片是<b>想象空间</b>。</li>
+        <li>把「故事版总纲」与「本投资逻辑图」对照看，<b>每一家公司的角色</b>都能在「AI 大脑工厂」里找到对应工位。</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    本图与《AI大脑工厂·产业链故事版》配套使用 · 数据口径截至 2026-08，公司列举仅供逻辑梳理<br>
+    不构成投资建议 · 投资有风险，决策需独立判断
+  </footer>
+
+</div>
+</body>
+</html>

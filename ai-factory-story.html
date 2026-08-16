@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>盖一座「AI大脑工厂」｜半导体存储产业链逻辑链路</title>
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --ink:#1f2937;
+    --sub:#64748b;
+    --line:#e5e9f2;
+    --compute:#2563eb;   /* 算+记 */
+    --make:#d97706;      /* 造 */
+    --pack:#7c3aed;      /* 装+连 */
+    --transmit:#0d9488;  /* 传 */
+    --shadow:0 6px 20px rgba(30,41,59,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;
+    -webkit-font-smoothing:antialiased;padding:0 0 60px;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+
+  /* Hero */
+  header{
+    background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 55%,#0ea5e9 100%);
+    color:#fff;padding:58px 22px 52px;margin-bottom:34px;
+  }
+  header .inner{max-width:1040px;margin:0 auto}
+  header h1{font-size:33px;font-weight:800;letter-spacing:.5px;margin-bottom:14px}
+  header p{font-size:16px;opacity:.92;max-width:760px}
+  .tag{display:inline-block;margin-top:18px;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.3);padding:6px 14px;border-radius:999px;font-size:13px}
+
+  /* Section */
+  .sec-title{font-size:21px;font-weight:800;margin:42px 0 6px;display:flex;align-items:center;gap:10px}
+  .sec-title::before{content:"";width:6px;height:22px;border-radius:3px;background:var(--compute)}
+  .sec-sub{color:var(--sub);font-size:14px;margin-bottom:22px}
+
+  /* Story lead */
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:24px 26px;box-shadow:var(--shadow);font-size:15.5px}
+  .lead b{color:var(--compute)}
+
+  /* Cards grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:22px 22px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(30,41,59,.13)}
+  .card .bar{position:absolute;left:0;top:0;bottom:0;width:5px}
+  .card h3{font-size:17px;font-weight:800;margin-bottom:4px}
+  .card .meta{font-size:12.5px;color:var(--sub);margin-bottom:12px;font-weight:600;letter-spacing:.3px}
+  .card .role{font-size:14.5px;margin-bottom:10px}
+  .card .terms{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-size:12.5px;background:#f1f5f9;color:#334155;padding:4px 10px;border-radius:8px;font-weight:600}
+  .chip.hl{background:#fff;border:1.5px solid #cbd5e1;color:#0f172a}
+
+  .c-compute .bar{background:var(--compute)}
+  .c-make .bar{background:var(--make)}
+  .c-pack .bar{background:var(--pack)}
+  .c-transmit .bar{background:var(--transmit)}
+  .c-compute .meta{color:var(--compute)}
+  .c-make .meta{color:var(--make)}
+  .c-pack .meta{color:var(--pack)}
+  .c-transmit .meta{color:var(--transmit)}
+
+  /* Chain diagram */
+  .chain{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px;box-shadow:var(--shadow)}
+  .flow{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+  .node{padding:12px 16px;border-radius:12px;font-weight:700;font-size:14px;text-align:center}
+  .node.policy{background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe}
+  .node.factory{background:#0f172a;color:#fff}
+  .arrow{color:var(--sub);font-size:20px;font-weight:700}
+  .roles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
+  .role-box{border-radius:12px;padding:14px 12px;text-align:center;border:1px solid var(--line)}
+  .role-box .t{font-weight:800;font-size:14px;margin-bottom:6px}
+  .role-box .d{font-size:12.5px;color:var(--sub)}
+  .r1{background:#eff6ff}.r1 .t{color:var(--compute)}
+  .r2{background:#fffbeb}.r2 .t{color:var(--make)}
+  .r3{background:#faf5ff}.r3 .t{color:var(--pack)}
+  .r4{background:#ecfeff}.r4 .t{color:var(--transmit)}
+  .r5{background:#f0fdf4}.r5 .t{color:#16a34a}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;
+    overflow:hidden;box-shadow:var(--shadow);font-size:14px}
+  th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:#f8fafc;font-weight:800;color:#334155;font-size:13.5px}
+  tr:last-child td{border-bottom:none}
+  td .k{font-weight:800}
+  .cat{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:7px;color:#fff;white-space:nowrap}
+  .cat.c1{background:var(--compute)}.cat.c2{background:var(--make)}
+  .cat.c3{background:var(--pack)}.cat.c4{background:var(--transmit)}
+
+  /* Layer note */
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .layer{border:1px dashed var(--line);border-radius:12px;padding:16px;background:#fff}
+  .layer .n{font-weight:800;font-size:14.5px;margin-bottom:6px}
+  .layer .x{font-size:13px;color:var(--sub)}
+  .layer.done{border-color:var(--compute);background:#f5f9ff}
+  .layer.done .n{color:var(--compute)}
+
+  footer{text-align:center;color:var(--sub);font-size:13px;margin-top:40px;line-height:1.9}
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+    .roles{grid-template-columns:repeat(2,1fr)}
+    .layers{grid-template-columns:1fr}
+    header h1{font-size:26px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <h1>盖一座「AI 大脑工厂」</h1>
+    <p>用建一座智算中心的故事，把半导体、存储、芯片、半设、半材、先进封装、PCB、光模块、光纤、CPO 一次性串成一条逻辑链路。</p>
+    <span class="tag">半导体存储产业链 · 逻辑链路总纲（故事版）</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="sec-title">故事主线</div>
+  <div class="sec-sub">假设你要给一座城市建一个「最强大脑」——智算中心，让它跑大模型、做 AI 推理。你需要什么？</div>
+  <div class="lead">
+    一座智算中心，本质上就是一个<b>「能算、能记、能联网」的 AI 系统</b>。下面六道工序，对应你关心的所有板块——它们不是并列的零件，而是<b>从地基到大脑的建造顺序</b>。
+  </div>
+
+  <div class="sec-title">六道工序</div>
+  <div class="sec-sub">每一道工序 = 一个比喻 + 对应的真实板块。颜色区分四大功能域。</div>
+  <div class="grid">
+
+    <div class="card c-compute">
+      <div class="bar"></div>
+      <h3>① 地基和房间 → PCB</h3>
+      <div class="meta">当家 · 承载与互联</div>
+      <div class="role">绿色电路板上刻满铜做的「马路」，所有零件焊在上面，靠这些马路通电、传信号。没有 PCB，芯片没地方住，也没法彼此通话。</div>
+      <div class="terms"><span class="chip hl">PCB 印制电路板</span></div>
+    </div>
+
+    <div class="card c-compute">
+      <div class="bar"></div>
+      <h3>② 大脑与记忆 → 芯片 / 存储 / 半导体</h3>
+      <div class="meta">算 + 记 · 核心成品</div>
+      <div class="role">半导体是「材料」，芯片是「成品」，存储是「管记忆的那一类芯片」。<b>包含关系：半导体 ⊃ 芯片 ⊃ 存储</b>。GPU/NPU 是大脑，DRAM/NAND/HBM 是记忆。</div>
+      <div class="terms"><span class="chip hl">半导体</span><span class="chip hl">芯片</span><span class="chip hl">存储</span></div>
+    </div>
+
+    <div class="card c-make">
+      <div class="bar"></div>
+      <h3>③ 造芯片的工厂 → 半设 / 半材</h3>
+      <div class="meta">造 · 上游供给</div>
+      <div class="role"><b>半设</b>是巨型机器（光刻/刻蚀/沉积），能用很多年、慢慢折旧——损耗小、是固定资产。<b>半材</b>是硅片/光刻胶/特气/抛光液，每做一批就吃掉一批，得不停补货。</div>
+      <div class="terms"><span class="chip hl">半设 半导体设备</span><span class="chip hl">半材 半导体材料</span></div>
+    </div>
+
+    <div class="card c-pack">
+      <div class="bar"></div>
+      <h3>④ 总装车间 → 先进封装</h3>
+      <div class="meta">装 + 连 · 集成</div>
+      <div class="role">裸芯片是块脆硅（die），封装厂把它包起来、引出脚、还能叠起来。<b>HBM = 多层 DRAM 叠起 + 硅通孔连接 = 存储 + 封装的合体</b>；Chiplet 把多块芯片拼一包。</div>
+      <div class="terms"><span class="chip hl">先进封装</span><span class="chip">HBM</span><span class="chip">Chiplet</span></div>
+    </div>
+
+    <div class="card c-transmit">
+      <div class="bar"></div>
+      <h3>⑤ 联网开会 → 光模块 / 光纤</h3>
+      <div class="meta">传 · 光通信</div>
+      <div class="role">电信号在铜线跑远了会衰减，于是改用光传。<b>光纤</b>是玻璃高速公路，<b>光模块</b>是路口「翻译官」，把电变光送上光纤、对端再翻译回来。光模块本身也含激光芯片、驱动 IC，焊在 PCB 上。</div>
+      <div class="terms"><span class="chip hl">光模块</span><span class="chip hl">光纤</span></div>
+    </div>
+
+    <div class="card c-pack">
+      <div class="bar"></div>
+      <h3>⑥ 下一步进化 → CPO</h3>
+      <div class="meta">装 + 连 · 融合</div>
+      <div class="role">普通光模块是「插在板边的独立盒子」。CPO 更激进：把光引擎和交换机/计算芯片<b>封装在同一基板、紧挨着</b>。距离更短→更省电、更低延迟。<b>CPO = 光模块升级 + 先进封装应用</b>。</div>
+      <div class="terms"><span class="chip hl">CPO 共封装光学</span></div>
+    </div>
+
+  </div>
+
+  <div class="sec-title">一张总链路图</div>
+  <div class="sec-sub">政策驱动需求，需求拆成五类角色，每类角色落到具体板块。</div>
+  <div class="chain">
+    <div class="flow">
+      <div class="node policy">政策<br>十五五 / AI+<br>算力网4万亿<br>上海智算集群</div>
+      <div class="arrow">→</div>
+      <div class="node factory">盖智算中心<br>（AI 大脑工厂）</div>
+    </div>
+    <div class="roles">
+      <div class="role-box r1"><div class="t">干活</div><div class="d">计算芯片<br>+ 存储(HBM)</div></div>
+      <div class="role-box r2"><div class="t">造出来</div><div class="d">半设(机器)<br>+ 半材(耗材)</div></div>
+      <div class="role-box r3"><div class="t">总装</div><div class="d">先进封装<br>→HBM/CPO</div></div>
+      <div class="role-box r4"><div class="t">联网</div><div class="d">光模块<br>+ 光纤</div></div>
+      <div class="role-box r5"><div class="t">当家</div><div class="d">PCB<br>(板+铜线)</div></div>
+    </div>
+  </div>
+
+  <div class="sec-title">名词对照表</div>
+  <div class="sec-sub">故事比喻 ↔ 真实术语 ↔ 一句话角色，方便你回看时对照。</div>
+  <table>
+    <thead>
+      <tr><th>故事比喻</th><th>真实板块</th><th>一句话角色</th><th>功能域</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="k">地基和房间</td><td>PCB 印制电路板</td><td>零件住的板，铜线互联</td><td><span class="cat c3">当家</span></td></tr>
+      <tr><td class="k">大脑 + 记忆</td><td>半导体 / 芯片 / 存储</td><td>材料 → 成品 → 记忆类芯片</td><td><span class="cat c1">算+记</span></td></tr>
+      <tr><td class="k">工厂机器</td><td>半设 半导体设备</td><td>光刻/刻蚀/沉积，低损耗、固定资产</td><td><span class="cat c2">造</span></td></tr>
+      <tr><td class="k">工厂耗材</td><td>半材 半导体材料</td><td>硅片/光刻胶/特气，天天吃、常补</td><td><span class="cat c2">造</span></td></tr>
+      <tr><td class="k">总装车间</td><td>先进封装（HBM/Chiplet）</td><td>把裸片包起、叠起、焊一起</td><td><span class="cat c3">装+连</span></td></tr>
+      <tr><td class="k">玻璃高速公路</td><td>光纤</td><td>光信号传输介质</td><td><span class="cat c4">传</span></td></tr>
+      <tr><td class="k">路口翻译官</td><td>光模块</td><td>电 ↔ 光 信号转换</td><td><span class="cat c4">传</span></td></tr>
+      <tr><td class="k">封装进化</td><td>CPO 共封装光学</td><td>光引擎与计算芯片共封装</td><td><span class="cat c3">装+连</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-title">下一步可叠加的层</div>
+  <div class="sec-sub">当前是「产业逻辑链路」的故事版，可以继续往上叠两层，做成完整复盘。</div>
+  <div class="layers">
+    <div class="layer done">
+      <div class="n">✓ 第一层：产业逻辑链路</div>
+      <div class="x">本页已完成——把板块用故事串成顺序与归属。</div>
+    </div>
+    <div class="layer">
+      <div class="n">第二层：政策与催化</div>
+      <div class="x">十五五/AI+/算力网4万亿/上海智算集群，如何逐层传导到各板块。</div>
+    </div>
+    <div class="layer">
+      <div class="n">第三层：国产替代与个股</div>
+      <div class="x">长鑫/长存、设备材料、封测、光模块、PCB 代表公司与替代逻辑。</div>
+    </div>
+  </div>
+
+  <footer>
+    本页为「半导体存储产业链」复盘展示 · 故事版总纲<br>
+    数据口径截至 2026-08，仅供逻辑梳理，不构成投资建议
+  </footer>
+
+</div>
+</body>
+</html>
