@@ -144,7 +144,7 @@
   .board-legend .sw.cy{background:#ecfeff;border-color:#0891b2}
   .board-legend .sw.mb{background:#f8fafc;border-color:#e8edf5}
   .c-compute{--c:var(--compute)}.c-make{--c:var(--make)}
-  .c-pack{--c:var(--pack)}.c-transmit{--c:var(--transmit)}.c-pcb{--c:var(--pcb)}
+  .c-pack{--c:var(--pack)}.c-transmit{--c:var(--transmit)}.c-pcb{--c:var(--pcb)}.c-app{--c:#db2777}.c-app .bar{background:#db2777}.c-app .meta{color:#db2777}
   .note-mini{font-size:11.5px;color:var(--sub);margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);line-height:1.6}
   .note-mini b{color:#0f172a}
 
@@ -240,7 +240,7 @@
   <a href="#glossary">名词对照</a>
   <a href="#policy">政策催化</a>
   <a href="#infra">算力基建</a>
-  <a href="#sectors">九大板块·公司</a>
+  <a href="#sectors">十大板块·公司</a>
   <a href="#defense">攻守转换</a>
   <a href="#insight">投资要点</a>
   <button class="print" onclick="window.print()">导出 / 打印 PDF</button>
@@ -276,8 +276,9 @@
             <span class="fc c1">交换机</span>
             <span class="fc c2">算力租赁</span>
             <span class="fc c3">国产 AI 芯片</span>
+            <span class="fc" style="background:#fce7f3;color:#be185d;border:1px solid #f9a8d4">AI 应用（软件·应用层）</span>
           </div>
-          <div class="fw-note">驱动：十五五 + 人工智能+ + 算力网 4 万亿 + 英伟达 capex + 国产替代</div>
+          <div class="fw-note">驱动：十五五 + 人工智能+ + 算力网 4 万亿 + 英伟达 capex + 国产替代 ＋ AI 应用（软件）价值实现层</div>
         </div>
         <div class="fw-mid">
           <div class="fw-arrow">↕</div>
@@ -516,12 +517,12 @@
       </div>
     </div>
 
-    <div class="connector">↓ 逐级传导：需要以下九大板块</div>
+    <div class="connector">↓ 逐级传导：需要以下十大板块</div>
   </section>
 
-  <!-- 九大板块·公司 -->
+  <!-- 十大板块·公司 -->
   <section id="sectors">
-    <div class="sec-title">九大板块 · 代表公司 <span class="step">第三层 · 个股（穷举）</span></div>
+    <div class="sec-title">十大板块 · 代表公司 <span class="step">第三层 · 个股（穷举）</span></div>
     <div class="sec-sub">每个板块卡片上方标注「对应故事哪道工序」，把「故事角色」与「投资标的」双向对照。龙头标橙，其余为弹性标的。交换机、算力已并入对应功能域。</div>
     <div class="board-legend">
       <span class="bl"><span class="sw kc"></span>科创板（688 开头）</span>
@@ -541,112 +542,7 @@
     </div>
 
     <div class="grid">
-
-      <div class="bcard c-compute">
-        <div class="map"><span class="pin">工序②</span> 大脑与记忆</div>
-        <h3>存储（算 + 记）</h3>
-        <div class="sub">AI 算力核心战略资源 · 超级周期</div>
-        <span class="badge">高弹性</span>
-        <div class="seg">晶圆制造双雄（未上市）</div>
-        <div class="stocks"><span class="st lead"><b>长鑫科技</b> DRAM(过会)</span><span class="st lead"><b>长江存储</b> NAND(辅导)</span></div>
-        <div class="seg">设计 / 接口 / 主控</div>
-        <div class="stocks">
-          <span class="st"><b>兆易创新</b>603986</span><span class="st"><b>北京君正</b>300223</span>
-          <span class="st"><b>澜起科技</b>688008 内存接口</span><span class="st">普冉688766</span>
-          <span class="st">东芯688110</span><span class="st">聚辰688123</span><span class="st">复旦微电688385</span><span class="st">联芸科技688449 主控</span>
-        </div>
-        <div class="seg">模组</div>
-        <div class="stocks">
-          <span class="st lead"><b>江波龙</b>301308</span><span class="st lead"><b>佰维存储</b>688525</span>
-          <span class="st">德明利001309</span><span class="st">朗科科技300042</span><span class="st">香农芯创300366</span><span class="st">同有科技300302</span><span class="st">协创数据300857</span>
-        </div>
-      </div>
-
-      <div class="bcard c-compute">
-        <div class="map"><span class="pin">工序②</span> 大脑（算力）</div>
-        <h3>计算芯片（国产 AI）</h3>
-        <div class="sub">替代英伟达 · 受 BIS 管制与生态制约</div>
-        <span class="badge">高预期差</span>
-        <div class="seg">AI GPU / DCU</div>
-        <div class="stocks">
-          <span class="st lead"><b>寒武纪</b>688256</span><span class="st lead"><b>海光信息</b>688041</span>
-          <span class="st"><b>华为昇腾</b>(未上市)</span><span class="st">景嘉微300474</span><span class="st">龙芯中科688047</span>
-        </div>
-        <div class="seg">互联 / ASIC / IP</div>
-        <div class="stocks"><span class="st">芯原股份688521</span><span class="st">翱捷科技688220</span><span class="st">澜起688008</span></div>
-      </div>
-
-      <div class="bcard c-make">
-        <div class="map"><span class="pin">工序③</span> 造芯片的工厂</div>
-        <h3>设备 + 材料（造）</h3>
-        <div class="sub">扩产配套最确定 · 长鑫/长存 capex 刚性</div>
-        <span class="badge">高确定性</span>
-        <div class="seg">设备（刻蚀/沉积/CMP/清洗/量测）</div>
-        <div class="stocks">
-          <span class="st lead"><b>北方华创</b>002371</span><span class="st lead"><b>中微公司</b>688012</span>
-          <span class="st lead"><b>拓荆科技</b>688072</span><span class="st lead"><b>华海清科</b>688120</span>
-          <span class="st lead"><b>盛美上海</b>688082</span><span class="st">芯源微688037</span><span class="st">中科飞测688361</span><span class="st">精测电子300567</span><span class="st">万业企业600641</span><span class="st">屹唐股份688729</span>
-        </div>
-        <div class="seg">材料（硅片/抛光液/特气/靶材/光刻胶/前驱体）</div>
-        <div class="stocks">
-          <span class="st"><b>沪硅产业</b>688126 硅片</span><span class="st"><b>安集</b>688019 抛光液</span>
-          <span class="st"><b>华特</b>688268 特气</span><span class="st"><b>江丰</b>300666 靶材</span>
-          <span class="st"><b>雅克</b>002409 前驱体</span><span class="st">彤程603650 光刻胶</span><span class="st">南大光电300346</span><span class="st">中船特气688146</span>
-          <span class="st lead"><b>有研新材</b>600206 靶材(聚焦半导体)</span><span class="st">鼎龙股份300054 CMP垫</span><span class="st">石英股份605168 石英</span><span class="st">神工股份688233</span>
-        </div>
-      </div>
-
-      <div class="bcard c-pack">
-        <div class="map"><span class="pin">工序④⑥</span> 总装车间 / 进化</div>
-        <h3>先进封装（装 + 连）</h3>
-        <div class="sub">HBM / Chiplet / CPO 核心载体</div>
-        <span class="badge">高弹性</span>
-        <div class="seg">封测龙头（含 HBM 2.5D/3D）</div>
-        <div class="stocks">
-          <span class="st lead"><b>长电科技</b>600584</span><span class="st lead"><b>通富微电</b>002156</span>
-          <span class="st">华天002185</span><span class="st">深科技000021</span><span class="st">太极600667</span>
-          <span class="st">甬矽电子688362</span><span class="st">晶方科技603005</span><span class="st">伟测科技688372</span><span class="st">盛合晶微(未上市)</span><span class="st">佰维688525</span>
-        </div>
-        <div class="seg">配套材料</div>
-        <div class="stocks"><span class="st">联瑞新材688300</span><span class="st">华海诚科688535</span><span class="st">德邦科技688035</span><span class="st">雅克(填充)</span></div>
-      </div>
-
-      <div class="bcard c-transmit">
-        <div class="map"><span class="pin">工序⑤</span> 联网开会</div>
-        <h3>光通信（传）</h3>
-        <div class="sub">AI 集群互联刚需 · 全球 capex 直接拉动</div>
-        <span class="badge">高确定性+出海</span>
-        <div class="seg">光模块 / CPO</div>
-        <div class="stocks">
-          <span class="st lead"><b>中际旭创</b>300308</span><span class="st lead"><b>新易盛</b>300502</span>
-          <span class="st"><b>天孚通信</b>300394</span><span class="st">光迅002281</span><span class="st">华工000988</span>
-          <span class="st">剑桥科技603083</span><span class="st">博创科技300548</span><span class="st">太辰光300570</span><span class="st">德科立688205</span>
-        </div>
-        <div class="seg">光纤 / 光缆 / 海缆</div>
-        <div class="stocks">
-          <span class="st lead"><b>长飞光纤</b>601869</span><span class="st lead"><b>亨通光电</b>600487</span><span class="st lead"><b>中天科技</b>600522</span>
-          <span class="st lead"><b>永鼎股份</b>600105</span><span class="st">烽火通信600498</span><span class="st">通光线缆300265</span><span class="st">杭电股份603618</span>
-        </div>
-        <div class="seg">光芯片</div>
-        <div class="stocks"><span class="st">源杰科技688498</span><span class="st">长光华芯688048</span><span class="st">仕佳光子688313</span><span class="st">永鼎(鼎芯光电激光器芯片)</span></div>
-        <div class="note-mini"><b>近期催化：</b>亨通光电 8/14 涨停 —— 商务部对印度单模光纤续征 5 年反倾销税 + 中标电信西部算力枢纽空芯光缆 + 英伟达 CPO 硅光交换机量产（映射 1.6T 硅光/MPO）+ 光纤年初以来涨价超 100%。<br>永鼎股份 8 月获 <b>11.33 亿激光器芯片订单</b>（履行至 2028），主赚光通信（光芯片 + 光纤光缆）+ 高温超导（核聚变）期权。</div>
-      </div>
-
-      <div class="bcard c-transmit">
-        <div class="map"><span class="pin">工序⑤</span> 联网开会（网络调度台）</div>
-        <h3>交换机（传）</h3>
-        <div class="sub">超节点集群刚需 · 国产替代加速</div>
-        <span class="badge">高弹性·国产替代</span>
-        <div class="seg">交换机整机</div>
-        <div class="stocks">
-          <span class="st lead"><b>锐捷网络</b>301165</span><span class="st lead"><b>紫光股份</b>000938(新华三)</span>
-          <span class="st lead"><b>星网锐捷</b>002396</span><span class="st">共进股份603118</span><span class="st">中兴通讯000063</span>
-        </div>
-        <div class="seg">交换芯片 / 代工</div>
-        <div class="stocks"><span class="st">盛科通信688702 交换芯片</span><span class="st">菲菱科思301191 代工</span><span class="st">工业富联601138 代工</span></div>
-      </div>
-
-      <div class="bcard c-pcb">
+<div class="bcard c-pcb">
         <div class="map"><span class="pin">工序①</span> 地基和房间</div>
         <h3>PCB（当家）</h3>
         <div class="sub">AI 服务器骨架 · 高频高速板量价齐升</div>
@@ -660,9 +556,8 @@
         <div class="seg">覆铜板（PCB 核心基材 · 占成本 30–40%）</div>
         <div class="stocks"><span class="st lead"><b>生益科技</b>600183 龙头</span><span class="st">南亚新材688519</span><span class="st">华正新材603186</span><span class="st">金安国纪002636</span><span class="st">中英科技300936</span><span class="st">超声电子000823</span><span class="st">方邦股份688020</span></div>
         <div class="note-mini"><b>AI 服务器驱动：</b>单机用量高、要求 M8/M9 超低损耗高速板，2026 进入持续涨价通道；生益科技为大陆唯一通过英伟达 M9 级认证并批量交付者，南亚新材获华为 M9 认证。港股建滔积层板(01888)为全球龙头。</div>
-      </div>
-
-      <div class="bcard c-pcb">
+      <
+<div class="bcard c-pcb">
         <div class="map"><span class="pin">工序①</span> 板上元件（被动器件）</div>
         <h3>MLCC / 被动元件（当家）</h3>
         <div class="sub">"电子工业大米" · AI 服务器单机用量 8–12 倍于传统</div>
@@ -681,9 +576,40 @@
           <span class="st">国瓷材料300285 钛酸钡粉体</span><span class="st">博迁新材605376 镍粉</span><span class="st">洁美科技002859 载带</span><span class="st">斯迪克300806 离型膜</span><span class="st">厦门钨业600549 贝思科配方粉</span>
         </div>
         <div class="note-mini"><b>涨价周期：</b>村田 2026/4 起对 AI 服务器/车规/射频品类提价 15%–35%，日韩产能向高端倾斜、订单向国内转移；单台 AI 服务器 MLCC 用量约 60 万颗，是普通服务器 8–12 倍。</div>
-      </div>
-
-      <div class="bcard c-compute">
+      <
+<div class="bcard c-compute">
+        <div class="map"><span class="pin">工序②</span> 大脑与记忆</div>
+        <h3>存储（算 + 记）</h3>
+        <div class="sub">AI 算力核心战略资源 · 超级周期</div>
+        <span class="badge">高弹性</span>
+        <div class="seg">晶圆制造双雄（未上市）</div>
+        <div class="stocks"><span class="st lead"><b>长鑫科技</b> DRAM(过会)</span><span class="st lead"><b>长江存储</b> NAND(辅导)</span></div>
+        <div class="seg">设计 / 接口 / 主控</div>
+        <div class="stocks">
+          <span class="st"><b>兆易创新</b>603986</span><span class="st"><b>北京君正</b>300223</span>
+          <span class="st"><b>澜起科技</b>688008 内存接口</span><span class="st">普冉688766</span>
+          <span class="st">东芯688110</span><span class="st">聚辰688123</span><span class="st">复旦微电688385</span><span class="st">联芸科技688449 主控</span>
+        </div>
+        <div class="seg">模组</div>
+        <div class="stocks">
+          <span class="st lead"><b>江波龙</b>301308</span><span class="st lead"><b>佰维存储</b>688525</span>
+          <span class="st">德明利001309</span><span class="st">朗科科技300042</span><span class="st">香农芯创300366</span><span class="st">同有科技300302</span><span class="st">协创数据300857</span>
+        </div>
+      <
+<div class="bcard c-compute">
+        <div class="map"><span class="pin">工序②</span> 大脑（算力）</div>
+        <h3>计算芯片（国产 AI）</h3>
+        <div class="sub">替代英伟达 · 受 BIS 管制与生态制约</div>
+        <span class="badge">高预期差</span>
+        <div class="seg">AI GPU / DCU</div>
+        <div class="stocks">
+          <span class="st lead"><b>寒武纪</b>688256</span><span class="st lead"><b>海光信息</b>688041</span>
+          <span class="st"><b>华为昇腾</b>(未上市)</span><span class="st">景嘉微300474</span><span class="st">龙芯中科688047</span>
+        </div>
+        <div class="seg">互联 / ASIC / IP</div>
+        <div class="stocks"><span class="st">芯原股份688521</span><span class="st">翱捷科技688220</span><span class="st">澜起688008</span></div>
+      <
+<div class="bcard c-compute">
         <div class="map"><span class="pin">工序②</span> 大脑（算力服务化）</div>
         <h3>算力 / 算力租赁（算 + 记·下游）</h3>
         <div class="sub">买 GPU 出租 · 受益算力券与算力缺口</div>
@@ -696,8 +622,107 @@
           <span class="st">首都在线300846</span><span class="st">莲花控股600186</span><span class="st">美利云000815</span><span class="st">城地香江603887</span>
           <span class="st">杭钢股份600126</span><span class="st">网宿科技300017</span><span class="st">立昂技术300603</span><span class="st">宝信软件600845</span>
         </div>
+      <
+<div class="bcard c-make">
+        <div class="map"><span class="pin">工序③</span> 造芯片的工厂</div>
+        <h3>设备 + 材料（造）</h3>
+        <div class="sub">扩产配套最确定 · 长鑫/长存 capex 刚性</div>
+        <span class="badge">高确定性</span>
+        <div class="seg">设备（刻蚀/沉积/CMP/清洗/量测）</div>
+        <div class="stocks">
+          <span class="st lead"><b>北方华创</b>002371</span><span class="st lead"><b>中微公司</b>688012</span>
+          <span class="st lead"><b>拓荆科技</b>688072</span><span class="st lead"><b>华海清科</b>688120</span>
+          <span class="st lead"><b>盛美上海</b>688082</span><span class="st">芯源微688037</span><span class="st">中科飞测688361</span><span class="st">精测电子300567</span><span class="st">万业企业600641</span><span class="st">屹唐股份688729</span>
+        </div>
+        <div class="seg">材料（硅片/抛光液/特气/靶材/光刻胶/前驱体）</div>
+        <div class="stocks">
+          <span class="st"><b>沪硅产业</b>688126 硅片</span><span class="st"><b>安集</b>688019 抛光液</span>
+          <span class="st"><b>华特</b>688268 特气</span><span class="st"><b>江丰</b>300666 靶材</span>
+          <span class="st"><b>雅克</b>002409 前驱体</span><span class="st">彤程603650 光刻胶</span><span class="st">南大光电300346</span><span class="st">中船特气688146</span>
+          <span class="st lead"><b>有研新材</b>600206 靶材(聚焦半导体)</span><span class="st">鼎龙股份300054 CMP垫</span><span class="st">石英股份605168 石英</span><span class="st">神工股份688233</span>
+        </div>
+      <
+<div class="bcard c-pack">
+        <div class="map"><span class="pin">工序④⑥</span> 总装车间 / 进化</div>
+        <h3>先进封装（装 + 连）</h3>
+        <div class="sub">HBM / Chiplet / CPO 核心载体</div>
+        <span class="badge">高弹性</span>
+        <div class="seg">封测龙头（含 HBM 2.5D/3D）</div>
+        <div class="stocks">
+          <span class="st lead"><b>长电科技</b>600584</span><span class="st lead"><b>通富微电</b>002156</span>
+          <span class="st">华天002185</span><span class="st">深科技000021</span><span class="st">太极600667</span>
+          <span class="st">甬矽电子688362</span><span class="st">晶方科技603005</span><span class="st">伟测科技688372</span><span class="st">盛合晶微(未上市)</span><span class="st">佰维688525</span>
+        </div>
+        <div class="seg">配套材料</div>
+        <div class="stocks"><span class="st">联瑞新材688300</span><span class="st">华海诚科688535</span><span class="st">德邦科技688035</span><span class="st">雅克(填充)</span></div>
+      <
+<div class="bcard c-transmit">
+        <div class="map"><span class="pin">工序⑤</span> 联网开会</div>
+        <h3>光通信（传）</h3>
+        <div class="sub">AI 集群互联刚需 · 全球 capex 直接拉动</div>
+        <span class="badge">高确定性+出海</span>
+        <div class="seg">光模块 / CPO</div>
+        <div class="stocks">
+          <span class="st lead"><b>中际旭创</b>300308</span><span class="st lead"><b>新易盛</b>300502</span>
+          <span class="st"><b>天孚通信</b>300394</span><span class="st">光迅002281</span><span class="st">华工000988</span>
+          <span class="st">剑桥科技603083</span><span class="st">博创科技300548</span><span class="st">太辰光300570</span><span class="st">德科立688205</span>
+        </div>
+        <div class="seg">光纤 / 光缆 / 海缆</div>
+        <div class="stocks">
+          <span class="st lead"><b>长飞光纤</b>601869</span><span class="st lead"><b>亨通光电</b>600487</span><span class="st lead"><b>中天科技</b>600522</span>
+          <span class="st lead"><b>永鼎股份</b>600105</span><span class="st">烽火通信600498</span><span class="st">通光线缆300265</span><span class="st">杭电股份603618</span>
+        </div>
+        <div class="seg">光芯片</div>
+        <div class="stocks"><span class="st">源杰科技688498</span><span class="st">长光华芯688048</span><span class="st">仕佳光子688313</span><span class="st">永鼎(鼎芯光电激光器芯片)</span></div>
+        <div class="note-mini"><b>近期催化：</b>亨通光电 8/14 涨停 —— 商务部对印度单模光纤续征 5 年反倾销税 + 中标电信西部算力枢纽空芯光缆 + 英伟达 CPO 硅光交换机量产（映射 1.6T 硅光/MPO）+ 光纤年初以来涨价超 100%。<br>永鼎股份 8 月获 <b>11.33 亿激光器芯片订单</b>（履行至 2028），主赚光通信（光芯片 + 光纤光缆）+ 高温超导（核聚变）期权。</div>
+      <
+<div class="bcard c-transmit">
+        <div class="map"><span class="pin">工序⑤</span> 联网开会（网络调度台）</div>
+        <h3>交换机（传）</h3>
+        <div class="sub">超节点集群刚需 · 国产替代加速</div>
+        <span class="badge">高弹性·国产替代</span>
+        <div class="seg">交换机整机</div>
+        <div class="stocks">
+          <span class="st lead"><b>锐捷网络</b>301165</span><span class="st lead"><b>紫光股份</b>000938(新华三)</span>
+          <span class="st lead"><b>星网锐捷</b>002396</span><span class="st">共进股份603118</span><span class="st">中兴通讯000063</span>
+        </div>
+        <div class="seg">交换芯片 / 代工</div>
+        <div class="stocks"><span class="st">盛科通信688702 交换芯片</span><span class="st">菲菱科思301191 代工</span><span class="st">工业富联601138 代工</span></div>
+      <
+      <div class="bcard c-app">
+        <div class="map"><span class="pin">工序⑦</span> 让大脑干活（应用层）</div>
+        <h3>AI 应用（软件 · 价值实现）</h3>
+        <div class="sub">硬件盖好"AI 大脑工厂"，软件让它产出服务与收入</div>
+        <span class="badge">高弹性·主题驱动</span>
+        <div class="seg">大模型 / 通用 AI</div>
+        <div class="stocks">
+          <span class="st lead"><b>科大讯飞</b>002230</span><span class="st"><b>三六零</b>601360</span>
+          <span class="st"><b>昆仑万维</b>300418</span><span class="st">拓尔思300229</span><span class="st">神州泰岳300002</span><span class="st">汉王科技002362</span><span class="st">云从科技688327</span><span class="st">当虹科技688039</span>
+        </div>
+        <div class="seg">AI 办公 / Agent / 生产力</div>
+        <div class="stocks">
+          <span class="st lead"><b>金山办公</b>688111</span><span class="st">万兴科技300624</span><span class="st">福昕软件688095</span><span class="st">泛微网络603039</span><span class="st">致远互联688369</span><span class="st">彩讯股份300634</span><span class="st">用友网络600588</span><span class="st">鼎捷数智300378</span>
+        </div>
+        <div class="seg">AI 编程 / 开发者工具</div>
+        <div class="stocks"><span class="st">卓易信息688258</span><span class="st">普元信息688118</span><span class="st">新炬网络605398</span></div>
+        <div class="seg">AI 医疗 / 教育</div>
+        <div class="stocks">
+          <span class="st">卫宁健康300253</span><span class="st">万达信息300168</span><span class="st">创业慧康300451</span><span class="st">润达医疗603108</span><span class="st">视源股份002841</span><span class="st">佳发教育300559</span><span class="st">世纪天鸿300654</span><span class="st">科大讯飞(教育)</span>
+        </div>
+        <div class="seg">AI 金融 / 投顾</div>
+        <div class="stocks">
+          <span class="st">同花顺300033</span><span class="st">恒生电子600570</span><span class="st">指南针300803</span><span class="st">财富趋势688318</span><span class="st">顶点软件603383</span><span class="st">金证股份600446</span>
+        </div>
+        <div class="seg">AI 内容 / 营销 / 多模态</div>
+        <div class="stocks">
+          <span class="st">易点天下301171</span><span class="st">蓝色光标300058</span><span class="st">因赛集团300781</span><span class="st">中文在线300364</span><span class="st">捷成股份300182</span><span class="st">芒果超媒300413</span>
+        </div>
+        <div class="seg">数据要素 / 语料（AI 粮食）</div>
+        <div class="stocks">
+          <span class="st">海天瑞声688787</span><span class="st">中文在线300364</span><span class="st">拓尔思300229</span><span class="st">零点有数301169</span><span class="st">人民网603000</span><span class="st">新华网603888</span><span class="st">视觉中国000681</span>
+        </div>
+        <div class="note-mini"><b>与硬件的关系：</b>半导体故事线 = 盖好"AI 大脑工厂"（算力 / 存储 / 网络）；AI 应用 = 让这个大脑去干活、产出服务与收入。<b>硬件是"卖铲人"（确定性高、机构重仓），软件是"淘金者"（弹性大、主题驱动、业绩兑现慢）</b>。传导：应用爆发 → 算力需求 → 硬件扩产（下游拉动上游）；硬件降价普及 → 降低应用门槛（上游反哺下游）。节奏：硬件先涨（算力基建确定性），应用后涨（业绩兑现 / AI 落地），是科技进攻主线的<b>下游延伸 / 价值实现层</b>。</div>
       </div>
-
     </div>
   </section>
 
