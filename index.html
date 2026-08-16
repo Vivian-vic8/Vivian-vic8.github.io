@@ -246,6 +246,31 @@
     .card,.bcard,.note,.layer,.chain,.locate .box{box-shadow:none}
   }
 .fw-soft{background:#fdf2f8;border:1px solid #fbcfe8;border-radius:14px;padding:16px}
+
+/* === AI 硬件 vs AI 软件 总框架图 === */
+.ai-map { display:flex; gap:14px; align-items:stretch; justify-content:center; margin:22px 0 14px; }
+.ai-map-col { flex:1 1 0; min-width:260px; border-radius:18px; padding:18px 16px; display:flex; flex-direction:column; gap:10px; }
+.ai-map-hw { background:#f0f7ff; border:1px solid #cfe4ff; }
+.ai-map-sw { background:#f8f5ff; border:1px solid #eadcff; }
+.ai-map-title { text-align:center; font-size:18px; font-weight:700; margin-bottom:6px; }
+.ai-map-hw .ai-map-title { color:#1d4ed8; }
+.ai-map-sw .ai-map-title { color:#7c3aed; }
+.ai-map-row { background:#fff; border-radius:10px; padding:10px 12px; border:1px solid #dbeafe; box-shadow:0 1px 2px rgba(0,0,0,.03); }
+.ai-map-sw .ai-map-row { border-color:#ede9fe; }
+.ai-map-main { font-size:15px; font-weight:700; color:#1e40af; }
+.ai-map-sw .ai-map-main { color:#6d28d9; }
+.ai-map-sub { font-size:13px; color:#475569; margin-top:3px; line-height:1.35; }
+.ai-map-arrow { width:46px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; position:relative; }
+.ai-map-arr-line { width:2px; height:60px; background:#94a3b8; }
+.ai-map-arr-head { font-size:16px; color:#64748b; margin:-4px 0; }
+.ai-map-arr-label { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; padding:2px 7px; border-radius:12px; font-size:12px; color:#475569; border:1px solid #e2e8f0; font-weight:600; }
+@media(max-width:760px){
+  .ai-map{flex-direction:column; align-items:stretch;}
+  .ai-map-arrow{width:100%; height:46px; flex-direction:row; margin:4px 0;}
+  .ai-map-arr-line{width:60px; height:2px;}
+  .ai-map-arr-head{transform:rotate(90deg); margin:0 -4px;}
+}
+
 </style>
 </head>
 <body>
@@ -286,47 +311,35 @@
 <div class="wrap">
 
   <!-- 全市场复盘总框架 (B骨架) + 攻守轮动 (A嵌入) -->
+      <!-- AI 硬件 + AI 软件 总框架图 -->
     <section id="framework">
     <div class="sec-title">AI 硬件 ＋ AI 软件 总框架 <span class="step">智算中心及应用 · 全貌</span></div>
-    <div class="sec-sub">本页 = 盖一座「AI 大脑工厂」（智算中心）并让它运转产出服务。左为 AI 硬件（卖铲人，先涨、确定性高），右为 AI 软件（淘金者，后涨、弹性大），中间双向传导。下方「硬件篇」与「软件篇」分别展开。</div>
+    <div class="sec-sub">本页 = 盖一座「AI 大脑工厂」（智算中心）并让它运转产出服务。左为 AI 硬件（卖铲人，先涨、确定性高），右为 AI 软件（淘金者，后涨、弹性大），中间「驱动」连接。下方「硬件篇」与「软件篇」分别展开。</div>
 
-    <div class="framework">
-      <div class="fw-cols">
-        <div class="fw-attack">
-          <div class="fw-h">AI 硬件 · 盖「AI 大脑工厂」（卖铲人）</div>
-          <div class="fw-sub">确定性高 · 机构重仓 · 先涨 · 看算力基建</div>
-          <div class="fw-chips">
-            <span class="fc c5">PCB</span>
-            <span class="fc c1">芯片 / 存储(HBM)</span>
-            <span class="fc c2">设备 / 材料</span>
-            <span class="fc c3">先进封装 / Chiplet</span>
-            <span class="fc c4">光模块 / CPO / 光纤</span>
-            <span class="fc c1">交换机 / 算力</span>
-            <span class="fc" style="background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd">液冷 / 电源 / 铜连接</span>
-            <span class="fc" style="background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd">晶圆代工 / 洁净室 / 服务器</span>
-            <span class="fc" style="background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd">功率半导体</span>
-          </div>
-          <div class="fw-note">工序①-⑥：PCB→芯片/存储→设备材料→先进封装→光通信→CPO/交换机；详见「硬件篇 · 全板块·公司」</div>
-        </div>
-        <div class="fw-mid">
-          <div class="fw-arrow">↕</div>
-          <div class="fw-midt">双向<br>传导</div>
-          <div class="fw-arrow">↕</div>
-        </div>
-        <div class="fw-soft">
-          <div class="fw-h">AI 软件 · 让大脑运转产出收入（淘金者）</div>
-          <div class="fw-sub">弹性大 · 后涨 · 看落地与业绩</div>
-          <div class="fw-chips">
-            <span class="fc" style="background:#fce7f3;color:#be185d;border:1px solid #f9a8d4">L1 底层软件</span>
-            <span class="fc" style="background:#fce7f3;color:#be185d;border:1px solid #f9a8d4">L2 大模型基座</span>
-            <span class="fc" style="background:#fce7f3;color:#be185d;border:1px solid #f9a8d4">L3 AI 应用 / AIGC</span>
-            <span class="fc" style="background:#fce7f3;color:#be185d;border:1px solid #f9a8d4">L4 端侧 AI</span>
-          </div>
-          <div class="fw-note">自下而上四层：底层软件→大模型→AI应用(含AIGC)→端侧AI；详见「软件篇 · AI 软件四层链路」</div>
-        </div>
+    <div class="ai-map">
+      <div class="ai-map-col ai-map-hw">
+        <div class="ai-map-title">AI 硬件 · 盖大脑工厂</div>
+        <div class="ai-map-row"><div class="ai-map-main">① PCB 电路板</div><div class="ai-map-sub">沪电 / 胜宏 / 深南电路</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">② 芯片 · 存储</div><div class="ai-map-sub">设计 + 存储（HBM）</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">③ 设备 · 材料</div><div class="ai-map-sub">制造地基</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">④⑥ 先进封装</div><div class="ai-map-sub">CoWoS / 封测</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">⑤ 光通信</div><div class="ai-map-sub">光纤 / 光模块 / CPO</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">终端 · 消费电子</div><div class="ai-map-sub">AI PC / 手机（出海口）</div></div>
       </div>
-      <div class="fw-foot">本页 = AI 硬件（盖工厂·卖铲人）＋ AI 软件（用工厂·淘金者）。传导双向：<b>应用爆发 → 算力需求 → 硬件扩产</b>（下游拉上游）；<b>硬件降价普及 → 降低应用门槛</b>（上游反哺下游）。</div>
+      <div class="ai-map-arrow">
+        <div class="ai-map-arr-line"></div>
+        <div class="ai-map-arr-head">▶</div>
+        <div class="ai-map-arr-label">驱动</div>
+      </div>
+      <div class="ai-map-col ai-map-sw">
+        <div class="ai-map-title">AI 软件 · 让大脑干活</div>
+        <div class="ai-map-row"><div class="ai-map-main">L1 底层软件</div><div class="ai-map-sub">框架 / 算力调度 / 数据要素</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">L2 大模型基座</div><div class="ai-map-sub">通用 LLM / 多模态 / 开源</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">L3 AI 应用</div><div class="ai-map-sub">办公 / 编程 / 金融 / 医疗 / AIGC / Agent</div></div>
+        <div class="ai-map-row"><div class="ai-map-main">L4 端侧 AI</div><div class="ai-map-sub">跨软硬件：消费电子承载<br>边缘芯片（瑞芯微）+ 端侧模型 = AI PC / AI 手机的大脑</div></div>
+      </div>
     </div>
+    <div class="fw-foot">本页 = AI 硬件（盖工厂·卖铲人）＋ AI 软件（用工厂·淘金者）。传导双向：<b>应用爆发 → 算力需求 → 硬件扩产</b>（下游拉上游）；<b>硬件降价普及 → 降低应用门槛</b>（上游反哺下游）。</div>
   </section>
 <section id="story">
     <div class="sec-title">故事主线 <span class="step">第一层 · 产业逻辑</span></div>
@@ -801,7 +814,32 @@
   </section>
 
   <!-- 投资要点 -->
-  <style>#defense .sec-title::before{background:#0f766e}#defense .sec-title .step{background:#0f766e}</style>
+  <style>#defense .sec-title::before{background:#0f766e}#defense .sec-title .step{background:#0f766e}
+/* === AI 硬件 vs AI 软件 总框架图 === */
+.ai-map { display:flex; gap:14px; align-items:stretch; justify-content:center; margin:22px 0 14px; }
+.ai-map-col { flex:1 1 0; min-width:260px; border-radius:18px; padding:18px 16px; display:flex; flex-direction:column; gap:10px; }
+.ai-map-hw { background:#f0f7ff; border:1px solid #cfe4ff; }
+.ai-map-sw { background:#f8f5ff; border:1px solid #eadcff; }
+.ai-map-title { text-align:center; font-size:18px; font-weight:700; margin-bottom:6px; }
+.ai-map-hw .ai-map-title { color:#1d4ed8; }
+.ai-map-sw .ai-map-title { color:#7c3aed; }
+.ai-map-row { background:#fff; border-radius:10px; padding:10px 12px; border:1px solid #dbeafe; box-shadow:0 1px 2px rgba(0,0,0,.03); }
+.ai-map-sw .ai-map-row { border-color:#ede9fe; }
+.ai-map-main { font-size:15px; font-weight:700; color:#1e40af; }
+.ai-map-sw .ai-map-main { color:#6d28d9; }
+.ai-map-sub { font-size:13px; color:#475569; margin-top:3px; line-height:1.35; }
+.ai-map-arrow { width:46px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; position:relative; }
+.ai-map-arr-line { width:2px; height:60px; background:#94a3b8; }
+.ai-map-arr-head { font-size:16px; color:#64748b; margin:-4px 0; }
+.ai-map-arr-label { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; padding:2px 7px; border-radius:12px; font-size:12px; color:#475569; border:1px solid #e2e8f0; font-weight:600; }
+@media(max-width:760px){
+  .ai-map{flex-direction:column; align-items:stretch;}
+  .ai-map-arrow{width:100%; height:46px; flex-direction:row; margin:4px 0;}
+  .ai-map-arr-line{width:60px; height:2px;}
+  .ai-map-arr-head{transform:rotate(90deg); margin:0 -4px;}
+}
+
+</style>
   
 
 
