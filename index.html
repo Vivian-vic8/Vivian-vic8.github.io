@@ -266,7 +266,7 @@
   <div class="inner">
     <h1>盖一座「AI 大脑工厂」· 半导体存储产业链复盘整合</h1>
     <p>把「故事版逻辑链路」与「投资逻辑图」合成一页：用盖智算中心的故事串起所有板块，再逐层叠上政策催化、算力基建、代表公司与投资要点。顶部导航可跳转，右上角可导出 PDF。</p>
-    <span class="tag">故事总纲（第一层）✓　政策催化（第二层）✓　国产替代与个股（第三层）✓　交换机 / 算力已并入对应功能域 ＋ 洁净室·服务器·液冷·电源·铜连接·晶圆代工·设备零部件已补齐</span>
+    <span class="tag">故事总纲（第一层）✓　政策催化（第二层）✓　国产替代与个股（第三层）✓　交换机 / 算力已并入对应功能域 ＋ 洁净室·服务器·液冷·电源·功率半导体·铜连接·晶圆代工·设备零部件已补齐</span>
   </div>
 </header>
 
@@ -500,6 +500,7 @@
         <tr><td class="k">装好的整机</td><td>AI 服务器 / 整机</td><td>各板块的总装出口</td><td><span class="cat c1">算+记</span></td></tr>
         <tr><td class="k">给大脑降温</td><td>液冷 / 温控</td><td>高功耗芯片散热刚需</td><td><span class="cat c1">算+记</span></td></tr>
         <tr><td class="k">给大脑供电</td><td>电源 / HVDC</td><td>稳定供电 + 降本</td><td><span class="cat c1">算+记</span></td></tr>
+        <tr><td class="k">供电的心脏</td><td>功率半导体（MOSFET/IGBT/SiC）</td><td>电源模块里的开关与转换芯片</td><td><span class="cat c1">算+记</span></td></tr>
         <tr><td class="k">柜内铜高速线</td><td>铜连接 / 高速铜缆</td><td>机柜内 GPU 短距互联</td><td><span class="cat c4">传</span></td></tr>
       </tbody>
     </table>
@@ -544,7 +545,7 @@
   <!-- 十大板块·公司 -->
   <section id="sectors">
     <div class="sec-title">全板块 · 代表公司 <span class="step">个股 · 按工序排列（穷举）</span></div>
-    <div class="sec-sub">每个板块卡片上方标注「对应故事哪道工序」，把「故事角色」与「投资标的」双向对照。龙头标橙，其余为弹性标的；交换机、算力、服务器、液冷、电源、铜连接、洁净室、晶圆代工等均已并入对应功能域。颜色区分四大功能域：算+记 / 造 / 装+连 / 传 / 当家 / 应用。</div>
+    <div class="sec-sub">每个板块卡片上方标注「对应故事哪道工序」，把「故事角色」与「投资标的」双向对照。龙头标橙，其余为弹性标的；交换机、算力、服务器、液冷、电源、功率半导体、铜连接、洁净室、晶圆代工等均已并入对应功能域。颜色区分四大功能域：算+记 / 造 / 装+连 / 传 / 当家 / 应用。</div>
     <div class="board-legend">
       <span class="bl"><span class="sw kc"></span>科创板（688 开头）</span>
       <span class="bl"><span class="sw cy"></span>创业板（300 / 301 开头）</span>
@@ -604,6 +605,7 @@
           <span class="st"><b>华为昇腾</b>(未上市)</span><span class="st">景嘉微300474</span><span class="st">龙芯中科688047</span>
         </div></div>
         <div class="seg"><div class="lab">互联 / ASIC / IP</div><div class="stocks"><span class="st">芯原股份688521</span><span class="st">翱捷科技688220</span><span class="st">澜起688008</span></div></div>
+        <div class="seg"><div class="lab">边缘 AI / 主控 SoC（AIoT，非功率）</div><div class="stocks"><span class="st lead"><b>瑞芯微</b>603893 边缘AI SoC</span><span class="st">全志科技300458</span><span class="st">北京君正300223</span></div></div>
       </div>
 
       <div class="scard c-compute">
@@ -655,6 +657,29 @@
         <div class="note"><b>逻辑：</b>传统 UPS 损耗高，HVDC 缩短供电路径、降低损耗；电源模块随 GPU 功率升级量价齐升，麦格米特进入英伟达供应链是核心催化。</div>
       </div>
 
+      <div class="scard c-compute">
+        <div class="hd"><span class="step">工序②·供电芯</span><h3>功率半导体（供电芯片）</h3></div>
+        <div class="role">把"粗电"变"精电"的开关与转换芯片（MOSFET / IGBT / SiC / GaN / 二极管）— 嵌在电源模块、HVDC、电机驱动里，是 AI 工厂"供电神经"的心脏。</div>
+        <div class="seg"><div class="lab">IDM 一体化（自研自产，最稳）</div><div class="stocks">
+          <span class="st lead"><b>华润微</b>688396 MOSFET 市占第一</span><span class="st lead"><b>士兰微</b>600460 全栈 IDM</span>
+          <span class="st lead"><b>扬杰科技</b>300373 分立器件 IDM</span><span class="st">闻泰科技600745(安世)</span>
+          <span class="st">华微电子600360</span><span class="st">芯联集成688469 功率代工</span>
+        </div></div>
+        <div class="seg"><div class="lab">IGBT 模块龙头</div><div class="stocks">
+          <span class="st lead"><b>斯达半导</b>603290 模块龙头</span><span class="st lead"><b>时代电气</b>688187 高压 IGBT</span>
+          <span class="st">宏微科技688711</span>
+        </div></div>
+        <div class="seg"><div class="lab">MOSFET / 第三代半导体（SiC·GaN）</div><div class="stocks">
+          <span class="st lead"><b>新洁能</b>605111 MOSFET 龙头</span><span class="st">东微半导688261 高压超结</span>
+          <span class="st">捷捷微电300623</span><span class="st">锴威特688693</span><span class="st">芯导科技688230</span><span class="st">银河微电688689</span>
+          <span class="st">天岳先进688234 SiC 衬底</span><span class="st">三安光电600703 SiC/GaN</span><span class="st">露笑科技002617 SiC 衬底</span><span class="st">燕东微688172</span>
+        </div></div>
+        <div class="seg"><div class="lab">晶闸管 / 高压大功率</div><div class="stocks">
+          <span class="st">台基股份300046</span><span class="st">派瑞股份300831 特高压</span><span class="st">苏州固锝002079</span>
+        </div></div>
+        <div class="note"><b>逻辑：</b>AI 服务器电源、HVDC、储能变流都要大量 MOSFET/IGBT/SiC；新洁能、士兰微、华润微等已切入英伟达 / 算力电源供应链。与上一卡"电源/HVDC"是「芯片→模块→系统」的上下游关系。</div>
+      </div>
+
       <div class="scard c-make">
         <div class="hd"><span class="step">工序③</span><h3>设备 + 材料（造）</h3></div>
         <div class="role">扩产配套最确定 · 长鑫/长存 capex 刚性；机器(设备)慢折旧、耗材(材料)常补。</div>
@@ -664,7 +689,7 @@
           <span class="st lead"><b>盛美上海</b>688082</span><span class="st">芯源微688037</span><span class="st">中科飞测688361</span><span class="st">精测电子300567</span><span class="st">万业企业600641</span><span class="st">屹唐股份688729</span>
         </div></div>
         <div class="seg"><div class="lab">材料（硅片/抛光液/特气/靶材/光刻胶/前驱体）</div><div class="stocks">
-          <span class="st"><b>沪硅产业</b>688126 硅片</span><span class="st"><b>安集</b>688019 抛光液</span>
+          <span class="st"><b>沪硅产业</b>688126 硅片</span><span class="st"><b>立昂微</b>605358 硅片+功率器件</span><span class="st"><b>安集</b>688019 抛光液</span>
           <span class="st"><b>华特</b>688268 特气</span><span class="st"><b>江丰</b>300666 靶材</span>
           <span class="st"><b>雅克</b>002409 前驱体</span><span class="st">彤程603650 光刻胶</span><span class="st">南大光电300346</span><span class="st">中船特气688146</span>
           <span class="st lead"><b>有研新材</b>600206 靶材</span><span class="st">鼎龙股份300054 CMP垫</span><span class="st">石英股份605168 石英</span><span class="st">神工股份688233</span>
