@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>攻守转换 · 逆指数防御板块（电力 / 煤炭 / 银行 / 证券）穷举</title>
+<style>
+  :root{
+    --bg:#f4f7f6;--card:#fff;--ink:#1f2937;--sub:#64748b;--line:#e3e9e7;
+    --defense:#0f766e;/* 防御/稳定主色 */
+    --power:#0d9488;--coal:#b45309;--bank:#1d4ed8;--sec:#7c3aed;
+    --shadow:0 6px 20px rgba(30,41,59,.08);--nav-h:60px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;padding-top:var(--nav-h)}
+  .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:50;
+    background:rgba(255,255,255,.86);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;
+    padding:0 18px;overflow-x:auto;white-space:nowrap}
+  .nav .brand{font-weight:800;font-size:14.5px;color:#0f172a;padding-right:14px;margin-right:6px;
+    border-right:1px solid var(--line);flex:none;display:flex;align-items:center;gap:7px}
+  .nav .brand .logo{width:22px;height:22px;border-radius:6px;
+    background:linear-gradient(135deg,#0f766e,#16a34a);display:inline-block}
+  .nav a{font-size:13px;color:var(--sub);text-decoration:none;padding:7px 11px;border-radius:8px;
+    font-weight:600;flex:none;transition:.15s}
+  .nav a:hover{background:#e6f4f1;color:var(--defense)}
+  .nav a.active{background:var(--defense);color:#fff}
+  .nav .print{margin-left:auto;flex:none;font-size:12.5px;font-weight:700;color:#fff;
+    background:var(--defense);border:none;padding:7px 14px;border-radius:8px;cursor:pointer}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  section{scroll-margin-top:calc(var(--nav-h) + 14px);padding-top:14px}
+  header{background:linear-gradient(135deg,#0f766e 0%,#0d9488 55%,#16a34a 100%);
+    color:#fff;padding:54px 22px 50px;margin-bottom:30px}
+  header .inner{max-width:1180px;margin:0 auto}
+  header h1{font-size:31px;font-weight:800;letter-spacing:.5px;margin-bottom:12px}
+  header p{font-size:15.5px;opacity:.93;max-width:840px}
+  .tag{display:inline-block;margin-top:18px;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.3);padding:6px 14px;border-radius:999px;font-size:13px}
+  .sec-title{font-size:21px;font-weight:800;margin:40px 0 6px;display:flex;align-items:center;gap:10px}
+  .sec-title::before{content:"";width:6px;height:22px;border-radius:3px;background:var(--defense)}
+  .sec-title .step{font-size:13px;font-weight:700;color:#fff;background:var(--defense);
+    padding:2px 10px;border-radius:7px;margin-left:4px}
+  .sec-sub{color:var(--sub);font-size:14px;margin-bottom:20px}
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:24px 26px;box-shadow:var(--shadow);font-size:15.5px}
+  .lead b{color:var(--defense)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;
+    overflow:hidden;box-shadow:var(--shadow);font-size:14px}
+  th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f3f8f7;font-weight:800;color:#334155;font-size:13.5px}
+  tr:last-child td{border-bottom:none}
+  td .k{font-weight:800}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--coal);
+    border-radius:12px;padding:18px 22px;box-shadow:var(--shadow);font-size:14.5px;margin-bottom:8px}
+  .note b{color:var(--coal)}
+  /* 板块卡片 */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .bcard{border:1px solid var(--line);border-radius:14px;padding:15px 16px 13px;background:var(--card);
+    box-shadow:var(--shadow);border-top:4px solid var(--c)}
+  .bcard h3{font-size:16px;font-weight:800;margin-bottom:1px}
+  .bcard .sub{font-size:12px;color:var(--sub);margin-bottom:8px;font-weight:600}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:7px;color:#fff;background:var(--c);margin-bottom:9px}
+  .bcard .seg{font-size:12.5px;color:#475569;margin:9px 0 4px;font-weight:700}
+  .stocks{display:flex;flex-wrap:wrap;gap:6px}
+  .st{font-size:11.5px;background:#f8fafc;border:1px solid #e8edf5;color:#1f2937;padding:3px 8px;border-radius:7px}
+  .st.lead{background:#fff7ed;border-color:#fed7aa}
+  .st.lead b{color:#c2410c}
+  .st.kc{border-color:#a855f7;background:#faf5ff;color:#6b21a8}
+  .st.kc b{color:#6b21a8}
+  .st.cy{border-color:#0891b2;background:#ecfeff;color:#0e7490}
+  .st.cy b{color:#0e7490}
+  .board-legend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:2px 0 18px;font-size:12.5px;color:#475569}
+  .board-legend .bl{display:flex;align-items:center;gap:7px;font-weight:600}
+  .board-legend .sw{width:14px;height:14px;border-radius:4px;border:1px solid}
+  .board-legend .sw.kc{background:#faf5ff;border-color:#a855f7}
+  .board-legend .sw.cy{background:#ecfeff;border-color:#0891b2}
+  .board-legend .sw.mb{background:#f8fafc;border-color:#e8edf5}
+  .tip{font-size:13px;color:var(--sub);margin-top:14px;padding:12px 16px;background:#f3f8f7;
+    border:1px dashed var(--line);border-radius:10px}
+  .tip b{color:var(--ink)}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}.nav a{font-size:12px;padding:6px 8px}}
+  @media print{.nav{display:none}body{padding-top:0}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand"><span class="logo"></span>攻守转换 · 逆指数防御</div>
+  <a href="#overview" class="active">封面</a>
+  <a href="#mech">稳指数机制</a>
+  <a href="#myth">误区修正</a>
+  <a href="#power">电力</a>
+  <a href="#coal">煤炭</a>
+  <a href="#bank">银行</a>
+  <a href="#security">证券</a>
+  <a href="#play">实战用法</a>
+  <button class="print" onclick="window.print()">导出 / 打印 PDF</button>
+</nav>
+
+<header id="overview">
+  <div class="inner">
+    <h1>攻守转换 · 逆指数防御板块复盘</h1>
+    <p>科技（半导体 / 存储 / CPO 等）不会一直涨，回落回调时，A 股有几类板块承担"稳住指数"的职责。它们分两种完全不同机制：主动护盘（银行保险）与逆指数避险（电力煤炭等高股息）。本页讲清机制、修正"券商护盘"误区，并穷举四大板块个股（含科创板 / 创业板着色）。</p>
+    <span class="tag">主动护盘（A类）✓　逆指数避险（B类）✓　证券误区修正 ✓　四板块个股穷举 ✓</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 机制 -->
+  <section id="mech">
+    <div class="sec-title">稳指数的两种机制 <span class="step">先分清，再谈板块</span></div>
+    <div class="sec-sub">A 股里"能扛住指数"的板块分两类，触发条件与资金性质完全不同。这是理解一切的总钥匙。</div>
+    <table>
+      <tr><th style="width:18%">类型</th><th style="width:20%">代表板块</th><th style="width:18%">谁在买</th><th style="width:22%">什么时候动</th><th>本质</th></tr>
+      <tr><td><b>A类 · 主动护盘</b><br>（权重工具）</td><td>银行、保险</td><td>国家队 / 主力资金</td><td>指数<b>快速破位、恐慌踩踏</b>时</td><td>拉权重股硬托沪指重心，阻断系统性风险</td></tr>
+      <tr><td><b>B类 · 逆指数避险</b><br>（资金切换）</td><td>电力、煤炭、运营商、石油、交运</td><td>机构避险资金</td><td>科技高位<b>获利了结、风险偏好降温</b>时</td><td>存量资金从科技撤出涌入高股息，客观对冲跌幅</td></tr>
+    </table>
+    <div class="tip"><b>一句话：</b>银行保险是"主动拉"，电力煤炭是"被动涨"。后者平时不显山露水，科技一回调，避险资金涌入、权重又不小，就把指数托住了。</div>
+  </section>
+
+  <!-- 误区 -->
+  <section id="myth">
+    <div class="sec-title">误区修正：证券 ≠ 默认护盘工具 <span class="step">重要</span></div>
+    <div class="note">
+      <p><b>常见误解：</b>"证券、银行拉升稳指数"——银行对，证券要修正。</p>
+      <p style="margin-top:8px">① 券商是<b>顺周期</b>品种（赚成交量、自营、两融的钱），科技退潮时资金反而减券商，<b>它不防御</b>。</p>
+      <p>② 公募对券商配置压到近十年低位、散户套牢盘重，<b>硬拉成本高、一拉就砸</b>。</p>
+      <p>③ 护盘优先顺序现在是：<b>银行、保险 &gt; 券商</b>。券商只在"指数急跌破位 + 叠加资本市场改革政策预期（降准 / T+0 / 并购）"时才脉冲，是<b>反弹进攻旗手</b>，不是防御底仓。</p>
+      <p style="margin-top:8px"><b>修正为：</b>银行才是定海神针，券商是反攻时弹性最大的，不是回调时的避风港。</p>
+    </div>
+  </section>
+
+  <!-- 电力 -->
+  <section id="power">
+    <div class="sec-title">电力：是逆指数板块，确有稳指数作用 <span class="step">B类 · 防御+成长</span></div>
+    <div class="sec-sub">机制不同于主动护盘——它是机构避险资金在科技回调时自然涌入的高股息资产，叠加自身成长逻辑，是震荡市"压舱石"。</div>
+    <div class="grid">
+      <div class="bcard" style="--c:var(--power)">
+        <h3>电力（防御底仓）</h3>
+        <div class="sub">逆指数属性被反复验证 · 需求无周期 · 高股息</div>
+        <span class="badge">B类 · 避险</span>
+        <div class="seg">水电（最稳防御底仓）</div>
+        <div class="stocks">
+          <span class="st lead"><b>长江电力</b>600900</span><span class="st lead"><b>华能水电</b>600025</span>
+          <span class="st">国投电力600886</span><span class="st">川投能源600674</span><span class="st">桂冠电力600236</span>
+          <span class="st">黔源电力002039</span><span class="st">湖北能源000883</span>
+        </div>
+        <div class="seg">火电 / 综合运营商（容量电价兜底 + 弹性）</div>
+        <div class="stocks">
+          <span class="st lead"><b>华能国际</b>600011</span><span class="st lead"><b>华电国际</b>600027</span>
+          <span class="st">国电电力600795</span><span class="st">大唐发电601991</span><span class="st">浙能电力600023</span>
+          <span class="st">申能股份600642</span><span class="st">京能电力600578</span><span class="st">粤电力A000539</span>
+          <span class="st">上海电力600021</span><span class="st">内蒙华电600863</span><span class="st">建投能源000600</span>
+          <span class="st">皖能电力000543</span><span class="st">深圳能源000027</span><span class="st">广州发展600098</span><span class="st">福能股份600483</span>
+        </div>
+        <div class="seg">核电 / 新能源发电</div>
+        <div class="stocks">
+          <span class="st lead"><b>中国核电</b>601985</span><span class="st lead"><b>中国广核</b>003816</span>
+          <span class="st">三峡能源600905</span><span class="st">节能风电601016</span><span class="st">太阳能000591</span>
+          <span class="st">晶科科技601778</span><span class="st">林洋能源601222</span><span class="st">浙江新能600032</span>
+          <span class="st">江苏新能603693</span><span class="st">中绿电000537</span><span class="st">金开新能600821</span>
+        </div>
+        <div class="seg">电网设备 / 智能电表（十五五投资主线，非纯防御）</div>
+        <div class="stocks">
+          <span class="st lead"><b>国电南瑞</b>600406</span><span class="st lead"><b>特变电工</b>600089</span>
+          <span class="st">许继电气000400</span><span class="st">平高电气600312</span><span class="st">中国西电601179</span>
+          <span class="st">思源电气002028</span><span class="st">四方股份601126</span><span class="st">东方电缆603606</span>
+          <span class="st">亨通光电600487</span><span class="st">中天科技600522</span><span class="st"><b>海兴电力</b>603556 智能电表</span>
+        </div>
+        <div class="seg">区域小电力（弹性大、波动高）</div>
+        <div class="stocks">
+          <span class="st">西昌电力600505</span><span class="st">明星电力600101</span><span class="st">乐山电力600644</span>
+          <span class="st">涪陵电力600452</span><span class="st">郴电国际600969</span><span class="st">广安爱众600979</span>
+          <span class="st">桂东电力600310</span><span class="st">华银电力600744</span><span class="st">豫能控股001896</span>
+          <span class="st">天富能源600509</span><span class="st">大连热电600719</span><span class="st">梅雁吉祥600868</span>
+        </div>
+      </div>
+      <div class="bcard" style="--c:var(--power)">
+        <h3>为什么电力能稳指数</h3>
+        <div class="sub">机制 + 基本面双支撑</div>
+        <div class="seg">逆指数表现被反复验证</div>
+        <div class="stocks"><span class="st">科创50大跌日，电力常逆势收红</span><span class="st">大盘调整时资金习惯性涌入高股息电力</span></div>
+        <div class="seg">为什么"稳"</div>
+        <div class="stocks"><span class="st">需求不受经济周期 / 情绪影响</span><span class="st">火电 / 水电龙头股息率 4%–7%</span><span class="st">PE 仅 10–15 倍</span><span class="st">震荡市压舱石</span></div>
+        <div class="seg">不止防御，还有成长（区别于纯防御股）</div>
+        <div class="stocks">
+          <span class="st">AI 耗电暴增："AI 尽头是电力"</span><span class="st">十五五电网投资超 5 万亿</span>
+          <span class="st">容量电价机制锁定火电盈利</span><span class="st">高温用电负荷破纪录</span>
+        </div>
+        <div class="tip" style="margin-top:14px"><b>定位：</b>电力是"防御 + 成长"双属性资产——科技回调时它是避风港，AI 算力扩张时它又是卖水人。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 煤炭 -->
+  <section id="coal">
+    <div class="sec-title">煤炭：同属逆指数防御，且更"硬" <span class="step">B类 · 高股息第一</span></div>
+    <div class="sec-sub">机制与电力同源（高股息红利避险），但股息率居全市场第一，且多一层煤价周期弹性。</div>
+    <div class="grid">
+      <div class="bcard" style="--c:var(--coal)">
+        <h3>煤炭（高股息 + 周期弹性）</h3>
+        <div class="sub">申万股息率 4.8% 居 32 个一级行业第一 · PB 仅 0.92 倍</div>
+        <span class="badge">B类 · 避险+弹性</span>
+        <div class="seg">动力煤 · 稳健高股息（底仓）</div>
+        <div class="stocks">
+          <span class="st lead"><b>中国神华</b>601088</span><span class="st lead"><b>陕西煤业</b>601225</span>
+          <span class="st lead"><b>中煤能源</b>601898</span><span class="st">电投能源002128</span><span class="st">晋控煤业601001</span>
+          <span class="st">新集能源601918</span><span class="st">山煤国际600546</span>
+        </div>
+        <div class="seg">动力煤 · 周期弹性（煤价敏感）</div>
+        <div class="stocks">
+          <span class="st lead"><b>兖矿能源</b>600188</span><span class="st lead"><b>潞安环能</b>601699</span>
+          <span class="st">广汇能源600256</span><span class="st">平煤股份601666</span><span class="st">冀中能源000937</span>
+          <span class="st">兰花科创600123</span><span class="st">盘江股份600395</span><span class="st">上海能源600508</span>
+          <span class="st">开滦股份600997</span><span class="st">恒源煤电600971</span><span class="st">昊华能源601101</span><span class="st">甘肃能化000552</span>
+        </div>
+        <div class="seg">焦煤 / 喷吹煤（稀缺煤种、钢价联动）</div>
+        <div class="stocks">
+          <span class="st lead"><b>山西焦煤</b>000983</span><span class="st lead"><b>淮北矿业</b>600985</span>
+          <span class="st">华阳股份600348</span><span class="st">美锦能源000723</span><span class="st">潞安环能601699</span><span class="st">平煤股份601666</span>
+        </div>
+        <div class="seg">煤电一体 / 转型</div>
+        <div class="stocks">
+          <span class="st">永泰能源600157</span><span class="st">郑州煤电600121</span><span class="st">苏能股份600925</span>
+          <span class="st">辽宁能源600758</span><span class="st">云煤能源600792</span><span class="st">安源煤业600397</span><span class="st">大有能源600403</span>
+        </div>
+      </div>
+      <div class="bcard" style="--c:var(--coal)">
+        <h3>为什么煤炭更"硬"</h3>
+        <div class="sub">比电力多一层周期弹性</div>
+        <div class="seg">高股息全市场第一</div>
+        <div class="stocks"><span class="st">申万煤炭股息率 4.8%（一级行业第一）</span><span class="st">银行 4.1% 第二</span><span class="st">PB 仅 0.92 倍（历史 12% 分位）</span><span class="st">下行空间极小</span></div>
+        <div class="seg">额外周期弹性</div>
+        <div class="stocks"><span class="st">煤价上行时市场煤占比高标业绩爆发力远超电力</span><span class="st">兖矿能源、潞安环能 100% 市场煤</span></div>
+        <div class="seg">与电力的联动</div>
+        <div class="stocks"><span class="st">煤价↓ → 火电成本↓ → 电力利润↑（有时跷跷板）</span><span class="st">同属高股息红利，科技回调时一起被避险买入</span></div>
+        <div class="seg">2026 盈利修复逻辑</div>
+        <div class="stocks"><span class="st">煤价中枢上移 + 成本刚性下降</span><span class="st">行业净利率回升</span><span class="st">不只防御，也有基本面改善</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 银行 -->
+  <section id="bank">
+    <div class="sec-title">银行：A类主动护盘核心 <span class="step">权重工具</span></div>
+    <div class="sec-sub">权重极大，拉银行即对沪指重心有强托举；国有大行兼具高股息 + 护盘双重属性。</div>
+    <div class="bcard" style="--c:var(--bank);max-width:100%">
+      <h3>银行（护盘定海神针）</h3>
+      <div class="sub">指数快速破位时国家队首选拉抬对象</div>
+      <span class="badge">A类 · 主动护盘</span>
+      <div class="seg">国有大行（高股息 + 护盘双重属性）</div>
+      <div class="stocks">
+        <span class="st lead"><b>工商银行</b>601398</span><span class="st lead"><b>农业银行</b>601288</span>
+        <span class="st lead"><b>中国银行</b>601988</span><span class="st lead"><b>建设银行</b>601939</span>
+        <span class="st">交通银行601328</span><span class="st">邮储银行601658</span>
+      </div>
+      <div class="seg">股份制银行</div>
+      <div class="stocks">
+        <span class="st lead"><b>招商银行</b>600036</span><span class="st">兴业银行601166</span><span class="st">浦发银行600000</span>
+        <span class="st">中信银行601998</span><span class="st">平安银行000001</span><span class="st">民生银行600016</span>
+        <span class="st">光大银行601818</span><span class="st">华夏银行600015</span><span class="st">浙商银行601916</span>
+      </div>
+      <div class="seg">城商行 / 农商行</div>
+      <div class="stocks">
+        <span class="st">宁波银行002142</span><span class="st">南京银行601009</span><span class="st">江苏银行600919</span>
+        <span class="st">北京银行601169</span><span class="st">杭州银行600926</span><span class="st">成都银行601838</span>
+        <span class="st">上海银行601229</span><span class="st">渝农商行601077</span><span class="st">沪农商行601825</span>
+        <span class="st">常熟银行601128</span><span class="st">长沙银行601577</span><span class="st">青岛银行002948</span>
+        <span class="st">苏州银行002966</span><span class="st">西安银行600928</span><span class="st">贵阳银行601997</span>
+        <span class="st">郑州银行002936</span><span class="st">齐鲁银行601665</span><span class="st">青农商行002958</span>
+        <span class="st">紫金银行601860</span><span class="st">无锡银行600908</span><span class="st">苏农银行603323</span>
+        <span class="st">张家港行002839</span><span class="st">瑞丰银行601528</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 证券 -->
+  <section id="security">
+    <div class="sec-title">证券：反弹进攻旗手，非防御底仓 <span class="step">顺周期</span></div>
+    <div class="sec-sub">科技企稳 / 反攻时弹性最大（成交量放大 + 两融 + 自营受益）；回调时资金减券商，不承担护盘职责。</div>
+    <div class="bcard" style="--c:var(--sec);max-width:100%">
+      <h3>证券（进攻弹性）</h3>
+      <div class="sub">指数急跌破位 + 改革政策预期时才脉冲</div>
+      <span class="badge">反弹进攻 · 非防御</span>
+      <div class="seg">头部券商</div>
+      <div class="stocks">
+        <span class="st lead"><b>中信证券</b>600030</span><span class="st lead"><b>华泰证券</b>601688</span>
+        <span class="st lead"><b>国泰海通</b>601211</span><span class="st">招商证券600999</span><span class="st">广发证券000776</span>
+        <span class="st">中信建投601066</span><span class="st">中金公司601995</span><span class="st">中国银河601881</span>
+        <span class="st">申万宏源000166</span><span class="st">东方证券600958</span><span class="st">光大证券601788</span><span class="st">兴业证券601377</span>
+      </div>
+      <div class="seg">互联网 / 特色券商</div>
+      <div class="stocks">
+        <span class="st lead"><b>东方财富</b>300059</span><span class="st">同花顺300033</span><span class="st">指南针300803</span>
+      </div>
+      <div class="seg">中小券商</div>
+      <div class="stocks">
+        <span class="st">国信证券002736</span><span class="st">东吴证券601555</span><span class="st">长江证券000783</span>
+        <span class="st">国元证券000728</span><span class="st">山西证券002500</span><span class="st">西部证券002673</span>
+        <span class="st">东北证券000686</span><span class="st">第一创业002797</span><span class="st">方正证券601901</span>
+        <span class="st">太平洋601099</span><span class="st">西南证券600369</span><span class="st">红塔证券601236</span>
+        <span class="st">南京证券601990</span><span class="st">中原证券601375</span><span class="st">华安证券600909</span>
+        <span class="st">财达证券600906</span><span class="st">浙商证券601878</span><span class="st">国金证券600109</span>
+        <span class="st">天风证券601162</span><span class="st">中泰证券600918</span><span class="st">信达证券601059</span>
+        <span class="st">首创证券601136</span><span class="st">长城证券002939</span><span class="st">华林证券002945</span>
+        <span class="st">国联证券601456</span><span class="st">哈投股份600864</span><span class="st">锦龙股份000712</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 实战 -->
+  <section id="play">
+    <div class="sec-title">实战用法：进攻主线 + 防守后盾 <span class="step">节奏切换</span></div>
+    <div class="sec-sub">把科技（进攻）与防御板块（后盾）合起来看，就是一张完整的 A 股"攻守转换"复盘图。</div>
+    <div class="tip" style="font-size:14.5px;line-height:1.9">
+      <b>① 科技逼空高潮期</b> → 减科技、盯电力 / 煤炭 / 银行避险（B类逆指数已悄然走强）。<br>
+      <b>② 指数恐慌破位期</b> → 看银行保险主动护盘、券商脉冲反攻（A类权重工具登场）。<br>
+      <b>③ 科技企稳反攻期</b> → 券商弹性最大，防御板块阶段性回落，资金回流进攻主线。<br>
+      <span style="color:var(--sub)">本质：A 股的"进攻—防守"节奏切换，靠的就是这套板块轮动。</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // scrollspy
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+    var map = {};
+    links.forEach(function(a){
+      var id = a.getAttribute('href').slice(1);
+      var sec = document.getElementById(id);
+      if(sec) map[id] = a;
+    });
+    var sections = Object.keys(map).map(function(id){return document.getElementById(id);});
+    function onScroll(){
+      var pos = window.scrollY + 90;
+      var current = sections[0];
+      for(var i=0;i<sections.length;i++){ if(sections[i].offsetTop <= pos) current = sections[i]; }
+      links.forEach(function(a){a.classList.remove('active');});
+      if(current && map[current.id]) map[current.id].classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+  // 按代码前缀着色：688=科创板，300/301=创业板
+  (function(){
+    document.querySelectorAll('.st').forEach(function(el){
+      var m = el.textContent.match(/\b(\d{6})\b/);
+      if(!m) return;
+      var p = m[1].substring(0,3);
+      if(p === '688') el.classList.add('kc');
+      else if(p === '300' || p === '301') el.classList.add('cy');
+    });
+  })();
+</script>
+</body>
+</html>
