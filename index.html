@@ -177,6 +177,49 @@
     .locate{grid-template-columns:1fr}
     header h1{font-size:25px}
   }
+  /* ===== 全市场总框架 (B骨架) + 攻守轮动 (A) ===== */
+  .framework{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card);box-shadow:var(--shadow);margin-top:8px}
+  .fw-cols{display:grid;grid-template-columns:1fr 70px 1fr;gap:14px;align-items:stretch}
+  .fw-attack{background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:16px}
+  .fw-defense{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:16px}
+  .fw-h{font-size:15px;font-weight:800;color:var(--compute);margin-bottom:2px}
+  .fw-defense .fw-h{color:var(--pcb)}
+  .fw-sub{font-size:12px;color:var(--sub);margin-bottom:12px;font-weight:600}
+  .fw-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+  .fc{font-size:12px;font-weight:700;padding:4px 10px;border-radius:8px;color:#fff}
+  .fc.c1{background:var(--compute)}.fc.c2{background:var(--make)}
+  .fc.c3{background:var(--pack)}.fc.c4{background:var(--transmit)}.fc.c5{background:var(--pcb)}
+  .fc.cd{background:#15803d}
+  .fw-note{font-size:11.5px;color:#475569;background:rgba(255,255,255,.6);border-radius:8px;padding:7px 10px;line-height:1.5}
+  .fw-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .fw-arrow{font-size:26px;font-weight:800;color:var(--policy);line-height:1}
+  .fw-midt{font-size:13px;font-weight:800;color:var(--policy);text-align:center;line-height:1.3}
+  .fw-foot{margin-top:16px;font-size:13.5px;font-weight:700;color:#0f172a;text-align:center;
+    background:linear-gradient(90deg,#eff6ff,#f0fdf4);border:1px solid var(--line);border-radius:12px;padding:12px 16px;line-height:1.6}
+  .timeline{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:14px 4px 20px;margin-bottom:6px}
+  .tstep{flex:1 0 196px;min-width:196px;display:flex;flex-direction:column}
+  .tbadge{align-self:flex-start;font-size:11px;font-weight:800;color:#fff;padding:2px 10px;border-radius:7px;margin-bottom:8px}
+  .tstep.attack .tbadge{background:var(--compute)}
+  .tstep.defense .tbadge{background:var(--pcb)}
+  .tcard{border:1px solid var(--line);border-left:4px solid #cbd5e1;border-radius:12px;padding:13px 14px;background:var(--card);box-shadow:var(--shadow);height:100%}
+  .tstep.attack .tcard{border-left-color:var(--compute)}
+  .tstep.defense .tcard{border-left-color:var(--pcb)}
+  .tstage{font-size:14.5px;font-weight:800;margin-bottom:4px}
+  .tstate{font-size:12.5px;color:#374151;margin-bottom:8px;line-height:1.55}
+  .tsignal{font-size:11.5px;color:#b45309;background:#fffbeb;border:1px dashed #fde68a;border-radius:8px;padding:6px 9px;margin-bottom:8px;line-height:1.5}
+  .tstep.defense .tsignal{color:#15803d;background:#f0fdf4;border-color:#bbf7d0}
+  .tchips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+  .tchips span{font-size:11px;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:6px;font-weight:600}
+  .tstep.attack .tchips span{background:#eff6ff;color:#1e40af}
+  .tstep.defense .tchips span{background:#f0fdf4;color:#166534}
+  .tact{font-size:11.5px;font-weight:700;color:#0f172a;background:#f8fafc;border-radius:8px;padding:6px 9px;line-height:1.5}
+  .tarrow{flex:0 0 34px;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:22px;font-weight:800}
+  .tarrow .loop{font-size:13px;color:var(--policy);font-weight:800;writing-mode:vertical-rl}
+  .tl-note{font-size:12.5px;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:4px;line-height:1.6}
+  .tl-note b{color:#0f172a}
+  @media print{
+    .tcard,.framework{box-shadow:none}
+  }
   @media print{
     .nav{display:none} body{padding-top:0}
     section{scroll-margin-top:0;page-break-inside:avoid}
@@ -190,6 +233,7 @@
 <nav class="nav">
   <div class="brand"><span class="logo"></span>半导体存储 · 复盘整合</div>
   <a href="#overview" class="active">封面</a>
+  <a href="#framework">全市场框架</a>
   <a href="#story">故事主线</a>
   <a href="#process">六道工序</a>
   <a href="#chain">总链路</a>
@@ -212,6 +256,120 @@
 </header>
 
 <div class="wrap">
+
+  <!-- 全市场复盘总框架 (B骨架) + 攻守轮动 (A嵌入) -->
+  <section id="framework">
+    <div class="sec-title">全市场复盘总框架 <span class="step">骨架 · 攻守一体</span></div>
+    <div class="sec-sub">把「科技进攻主线」与「逆指数防御后盾」放进同一张 A 股复盘地图；中间的「攻守轮动」是节奏枢纽。下方攻守轮动时序图描述两者如何切换，完整独立页见 <a href="攻守轮动示意图.html" target="_blank">攻守轮动示意图.html</a>。</div>
+
+    <div class="framework">
+      <div class="fw-cols">
+        <div class="fw-attack">
+          <div class="fw-h">进攻主线 · 科技硬科技</div>
+          <div class="fw-sub">弹性 / 成长 / 看景气与全球需求</div>
+          <div class="fw-chips">
+            <span class="fc c1">半导体·设备材料</span>
+            <span class="fc c2">存储 / HBM</span>
+            <span class="fc c3">先进封装 / Chiplet</span>
+            <span class="fc c4">CPO / 光模块 / 光纤</span>
+            <span class="fc c5">PCB</span>
+            <span class="fc c1">交换机</span>
+            <span class="fc c2">算力租赁</span>
+            <span class="fc c3">国产 AI 芯片</span>
+          </div>
+          <div class="fw-note">驱动：十五五 + 人工智能+ + 算力网 4 万亿 + 英伟达 capex + 国产替代</div>
+        </div>
+        <div class="fw-mid">
+          <div class="fw-arrow">↕</div>
+          <div class="fw-midt">攻守<br>轮动</div>
+          <div class="fw-arrow">↕</div>
+        </div>
+        <div class="fw-defense">
+          <div class="fw-h">防御后盾 · 逆指数高股息</div>
+          <div class="fw-sub">稳定 / 股息 / 避险与主动护盘</div>
+          <div class="fw-chips">
+            <span class="fc cd">电力（水电 / 火电 / 核电）</span>
+            <span class="fc cd">煤炭（股息率第一）</span>
+            <span class="fc cd">银行（主动护盘核心）</span>
+            <span class="fc cd">券商（反攻旗手）</span>
+          </div>
+          <div class="fw-note">驱动：避险资金 + 高股息 + 主动护盘（银行保险）+ 容量电价 / 煤价修复</div>
+        </div>
+      </div>
+      <div class="fw-foot">A 股复盘 = 进攻主线（弹性 / 成长） ＋ 防御后盾（稳定 / 股息） ＋ 攻守轮动（节奏）。科技不会一直涨，回落时防御承接托住指数，周而复始。</div>
+    </div>
+
+    <div class="sec-title" style="margin-top:34px">攻守轮动时序图 <span class="step">节奏 · 切换信号</span></div>
+    <div class="timeline">
+      <div class="tstep attack">
+        <div class="tbadge">进攻</div>
+        <div class="tcard">
+          <div class="tstage">① 科技启动 · 主升</div>
+          <div class="tstate">政策与产业催化落地，半导体 / 存储 / CPO / 算力主线全面走强，量价齐升。</div>
+          <div class="tsignal">信号：十五五开局、算力网 4 万亿、英伟达供给恢复、交换机 / 算力板块异动</div>
+          <div class="tchips"><span>半导体</span><span>存储·HBM</span><span>CPO</span><span>PCB</span><span>光模块</span><span>交换机</span><span>算力</span></div>
+          <div class="tact">操作：重仓进攻主线，享受主升浪</div>
+        </div>
+      </div>
+      <div class="tarrow">→</div>
+      <div class="tstep attack">
+        <div class="tbadge">进攻</div>
+        <div class="tcard">
+          <div class="tstage">② 科技逼空 · 末段</div>
+          <div class="tstate">估值高、成交拥挤、情绪过热，板块内部开始分化，波动加大。</div>
+          <div class="tsignal">信号：换手率创高、融资余额陡升、龙头市盈率达历史高位</div>
+          <div class="tchips"><span>记忆芯片</span><span>光通信</span><span>先进封装</span><span>国产芯片</span></div>
+          <div class="tact">操作：逐步止盈，降低进攻仓位</div>
+        </div>
+      </div>
+      <div class="tarrow">→</div>
+      <div class="tstep defense">
+        <div class="tbadge">切换</div>
+        <div class="tcard">
+          <div class="tstage">③ 获利了结 · 切换点</div>
+          <div class="tstate">科技高位回落，资金撤出，指数承压；这是攻 → 守的关键转折点。</div>
+          <div class="tsignal">信号：科技放量大跌、北向 / 主力净流出、科创 50 破位</div>
+          <div class="tchips"><span>减仓科技</span><span>避险启动</span></div>
+          <div class="tact">操作：减进攻、预备切防御</div>
+        </div>
+      </div>
+      <div class="tarrow">→</div>
+      <div class="tstep defense">
+        <div class="tbadge">防御</div>
+        <div class="tcard">
+          <div class="tstage">④ 防御承接 · 托指数</div>
+          <div class="tstate">避险资金涌入高股息，电力 / 煤炭 / 银行逆势走强，客观上对冲科技跌幅、托住指数。</div>
+          <div class="tsignal">信号：科创 50 跌而电力 / 煤炭指数逆势收红、红利 ETF 放量</div>
+          <div class="tchips"><span>电力</span><span>煤炭</span><span>银行</span><span>运营商</span><span>石油</span></div>
+          <div class="tact">操作：加仓防御后盾，稳定组合</div>
+        </div>
+      </div>
+      <div class="tarrow">→</div>
+      <div class="tstep defense">
+        <div class="tbadge">护盘</div>
+        <div class="tcard">
+          <div class="tstage">⑤ 指数企稳 · 护盘</div>
+          <div class="tstate">恐慌缓解，银行保险主动护盘拉权重，券商脉冲反攻，指数重心稳住。</div>
+          <div class="tsignal">信号：大金融异动、券商放量、指数长下影企稳</div>
+          <div class="tchips"><span>银行·保险</span><span>券商脉冲</span></div>
+          <div class="tact">操作：防御为主，等科技企稳信号</div>
+        </div>
+      </div>
+      <div class="tarrow">→</div>
+      <div class="tstep attack">
+        <div class="tbadge">新周期</div>
+        <div class="tcard">
+          <div class="tstage">⑥ 科技再起 · 新周期</div>
+          <div class="tstate">新催化出现（政策 / 业绩 / 海外），科技重获资金，回到阶段 ①，循环往复。</div>
+          <div class="tsignal">信号：新产业催化、季报超预期、风险偏好回暖</div>
+          <div class="tchips"><span>新一轮攻势</span><span>切换回进攻</span></div>
+          <div class="tact">操作：再切回进攻主线</div>
+        </div>
+      </div>
+      <div class="tarrow"><span class="loop">↺ 循环</span></div>
+    </div>
+    <div class="tl-note"><b>读图要点：</b>轮动不是「非此即彼」，而是<b>仓位重心在进攻与防御之间往复迁移</b>。判定靠「切换信号」而非感觉——科技逼空看估值 / 拥挤度，回调看是否放量破位，防御走强看红利是否逆势，护盘看大金融异动。每次到<b>③ 切换点</b>都要重新评估站位。</div>
+  </section>
 
   <!-- 故事主线 -->
   <section id="story">
