@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>十五五"六张网"主题投资标的图谱（含区间涨幅）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#1f2329; --sub:#5b6573;
+    --line:#e4e7ec; --red:#c0392b; --blue:#2c5fb3; --green:#2e8b57;
+    --gold:#b8860b; --chip:#eef2f7;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:1200px;margin:0 auto;padding:28px 20px 60px;}
+  header{border-bottom:3px solid var(--red);padding-bottom:14px;margin-bottom:18px;}
+  header h1{margin:0;font-size:26px;letter-spacing:1px;}
+  header p{margin:6px 0 0;color:var(--sub);font-size:13px;}
+  .note{background:#eef6ff;border:1px solid #cfe0f2;border-radius:10px;padding:10px 14px;
+    font-size:12.5px;color:#1d5a96;margin-bottom:22px;}
+  .tldr{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+  .tldr .b{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .tldr .b .n{font-size:22px;font-weight:700;color:var(--red);}
+  .tldr .b .t{font-size:12.5px;color:var(--sub);margin-top:4px;}
+  h2{font-size:19px;margin:34px 0 14px;padding-left:10px;border-left:4px solid var(--red);}
+  h3{font-size:15px;margin:18px 0 8px;color:var(--blue);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px;}
+  .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .net{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--card);}
+  .net.old{background:#fbf6ee;border-color:#ecd9b8;}
+  .net.new{background:#eef4fb;border-color:#cfe0f2;}
+  .net .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;margin-bottom:8px;}
+  .net.old .tag{background:#f3e2c4;color:#8a6310;}
+  .net.new .tag{background:#d4e6f7;color:#1d5a96;}
+  .net h4{margin:2px 0 4px;font-size:16px;}
+  .net .amt{color:var(--red);font-weight:700;font-size:13px;}
+  .net .logic{font-size:12.5px;color:var(--sub);margin:6px 0 10px;}
+  .net ul{margin:0;padding-left:18px;font-size:12.5px;}
+  .net ul li{margin:3px 0;}
+  code{background:var(--chip);padding:1px 6px;border-radius:5px;font-size:12px;color:#333;}
+  .pct{color:var(--red);font-weight:700;font-size:12px;margin-left:5px;white-space:nowrap;}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:#f0f3f7;font-weight:600;}
+  .rank{width:14%;color:var(--red);font-weight:700;}
+  .src{font-size:11.5px;color:#8a93a0;margin-top:6px;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .risk li{margin:6px 0;font-size:13px;}
+  .risk b{color:var(--red);}
+  .disc{background:#fff8f0;border:1px solid #f0d9b8;border-radius:10px;padding:14px 16px;
+    font-size:12px;color:#7a5a1e;margin-top:30px;}
+  #scaleChart{width:100%;height:340px;}
+  #topChart{width:100%;height:440px;}
+  @media(max-width:900px){.tldr,.grid6,.two{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>"十五五"六张网 · 主题投资标的图谱（含 8 月区间涨幅）</h1>
+    <p>政策来源：2026-04 中央政治局会议顶层部署；2026-08-19 发改委"六张网"重大项目协调调度机制会 ｜ 数据时点：2026-08</p>
+  </header>
+
+  <div class="note">
+    <b>区间涨幅口径：</b>统计窗口为 <b>2026-08-03（8 月首个交易日）至 2026-08-21（最近交易日收盘）</b>，
+    每只标的后标注的 <span class="pct">+x.xx%</span> 为该区间累计涨跌幅（红涨，A 股惯例）。
+    数据来源：westock 行情接口，数据截至 2026-08-21 收盘。本批 65 只标的该区间内<b>全部为正收益</b>。
+  </div>
+
+  <div class="tldr">
+    <div class="b"><div class="n">≈24 万亿</div><div class="t">六张网"十五五"合计投资（水6/电5/管网5/算力4/通信2/物流2）</div></div>
+    <div class="b"><div class="n">三旧 + 三新</div><div class="t">旧基建升级（水网·地下管网·物流网）＋ 新基建（电网·算力·通信）</div></div>
+    <div class="b"><div class="n">前高后稳</div><div class="t">2026Q3 或迎施工高峰；算力网全环节兑现确定性最高</div></div>
+    <div class="b"><div class="n">65 只全涨</div><div class="t">8/3–8/21 区间 65 只标的悉数上涨，区间涨幅 +0.79%~+10.52%</div></div>
+  </div>
+
+  <div class="card">
+    <h3>六张网投资规模（万亿元，"十五五"期间测算）</h3>
+    <div id="scaleChart"></div>
+    <div class="src">数据来源：发改委"十五五"109 项重大工程口径及券商测算（财通证券、中信建投、中国银河、国联民生研报，2026-08），公开整理。</div>
+  </div>
+
+  <h2>一、六张网分层框架：三旧 · 三新（含区间涨幅）</h2>
+  <div class="grid6">
+    <div class="net old"><span class="tag">旧基建升级</span><h4>① 国家水网</h4>
+      <div class="amt">≈6 万亿</div>
+      <div class="logic">跨流域调水、大型灌区、防洪减灾、城乡供水；40 条骨干通道已建/在建 35 条。</div>
+      <ul><li>中国电建 <code>601669</code><span class="pct">+0.86%</span></li><li>青龙管业 <code>002457</code><span class="pct">+3.71%</span></li><li>伟星新材 <code>002372</code><span class="pct">+3.65%</span></li></ul>
+    </div>
+    <div class="net old"><span class="tag">旧基建升级</span><h4>⑤ 城市地下管网</h4>
+      <div class="amt">≈5 万亿</div>
+      <div class="logic">城市更新核心，"十五五"改造约 77 万公里；供水/排水/燃气/热力/综合管廊。</div>
+      <ul><li>隧道股份 <code>600820</code><span class="pct">+2.40%</span></li><li>伟星新材 <code>002372</code><span class="pct">+3.65%</span></li><li>新兴铸管 <code>000778</code><span class="pct">+0.81%</span></li></ul>
+    </div>
+    <div class="net old"><span class="tag">旧基建升级</span><h4>⑥ 现代物流网</h4>
+      <div class="amt">≈2 万亿</div>
+      <div class="logic">181 国家物流枢纽 + 105 冷链基地；降低全社会物流成本，多式联运+智能仓储。</div>
+      <ul><li>顺丰控股 <code>002352</code><span class="pct">+0.91%</span></li><li>中国外运 <code>601598</code><span class="pct">+2.86%</span></li><li>冰轮环境 <code>000811</code><span class="pct">+7.49%</span></li></ul>
+    </div>
+    <div class="net new"><span class="tag">新基建</span><h4>② 新型电网</h4>
+      <div class="amt">≈5 万亿</div>
+      <div class="logic">特高压 + 智能配网 + 源网荷储；资本开支能见度最高，主配网设备订单确定性强。</div>
+      <ul><li>国电南瑞 <code>600406</code><span class="pct">+1.17%</span></li><li>平高电气 <code>600312</code><span class="pct">+4.98%</span></li><li>中国西电 <code>601179</code><span class="pct">+2.42%</span></li></ul>
+    </div>
+    <div class="net new"><span class="tag">新基建</span><h4>③ 算力网</h4>
+      <div class="amt">≈4 万亿</div>
+      <div class="logic">AI 算力需求爆发；服务器/光模块/液冷量价齐升，全环节兑现确定性最高。</div>
+      <ul><li>中科曙光 <code>603019</code><span class="pct">+1.61%</span></li><li>中际旭创 <code>300308</code><span class="pct">+4.70%</span></li><li>寒武纪 <code>688256</code><span class="pct">+6.48%</span></li></ul>
+    </div>
+    <div class="net new"><span class="tag">新基建</span><h4>④ 新一代通信网</h4>
+      <div class="amt">≈2 万亿</div>
+      <div class="logic">5G-A 规模商用、6G 预研、光纤扩容、卫星互联网组网（空天地海一体化）。</div>
+      <ul><li>中兴通讯 <code>000063</code><span class="pct">+1.45%</span></li><li>长飞光纤 <code>601869</code><span class="pct">+4.48%</span></li><li>中国卫通 <code>601698</code><span class="pct">+2.26%</span></li></ul>
+    </div>
+  </div>
+
+  <h2>二、全部标的区间涨幅总览（穷举 · 去重 65 只）</h2>
+  <div class="card">
+    <h3>涨幅 TOP15（2026-08-03 → 08-21，红涨）</h3>
+    <div id="topChart"></div>
+    <div class="src">数据来源：westock 行情接口，区间累计涨跌幅，数据截至 2026-08-21 收盘。</div>
+  </div>
+
+  <div class="card">
+    <h3>① 国家水网（11 只）</h3>
+    <table>
+      <tr><th>名称</th><th>代码</th><th>区间涨幅</th><th>名称</th><th>代码</th><th>区间涨幅</th></tr>
+      <tr><td>中国电建</td><td><code>601669</code></td><td><span class="pct">+0.86%</span></td><td>大禹节水</td><td><code>300021</code></td><td><span class="pct">+3.28%</span></td></tr>
+      <tr><td>中国能建</td><td><code>601868</code></td><td><span class="pct">+0.79%</span></td><td>威派格</td><td><code>603956</code></td><td><span class="pct">+3.19%</span></td></tr>
+      <tr><td>粤水电(广东建工)</td><td><code>002060</code></td><td><span class="pct">+1.23%</span></td><td>和达科技</td><td><code>688296</code></td><td><span class="pct">+7.85%</span></td></tr>
+      <tr><td>青龙管业</td><td><code>002457</code></td><td><span class="pct">+3.71%</span></td><td>碧水源</td><td><code>300070</code></td><td><span class="pct">+1.74%</span></td></tr>
+      <tr><td>韩建河山</td><td><code>603616</code></td><td><span class="pct">+4.10%</span></td><td>龙泉股份</td><td><code>002671</code></td><td><span class="pct">+2.80%</span></td></tr>
+      <tr><td>伟星新材</td><td><code>002372</code></td><td><span class="pct">+3.65%</span></td><td colspan="3"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>② 新型电网（13 只）</h3>
+    <table>
+      <tr><th>名称</th><th>代码</th><th>区间涨幅</th><th>名称</th><th>代码</th><th>区间涨幅</th></tr>
+      <tr><td>国电南瑞</td><td><code>600406</code></td><td><span class="pct">+1.17%</span></td><td>东方电缆</td><td><code>603606</code></td><td><span class="pct">+4.21%</span></td></tr>
+      <tr><td>平高电气</td><td><code>600312</code></td><td><span class="pct">+4.98%</span></td><td>亨通光电</td><td><code>600487</code></td><td><span class="pct">+6.16%</span></td></tr>
+      <tr><td>特变电工</td><td><code>600089</code></td><td><span class="pct">+1.20%</span></td><td>阳光电源</td><td><code>300274</code></td><td><span class="pct">+4.40%</span></td></tr>
+      <tr><td>中国西电</td><td><code>601179</code></td><td><span class="pct">+2.42%</span></td><td>宁德时代</td><td><code>300750</code></td><td><span class="pct">+3.84%</span></td></tr>
+      <tr><td>许继电气</td><td><code>000400</code></td><td><span class="pct">+2.10%</span></td><td>国网信通</td><td><code>600131</code></td><td><span class="pct">+1.49%</span></td></tr>
+      <tr><td>东方电子</td><td><code>000682</code></td><td><span class="pct">+1.63%</span></td><td>四方股份</td><td><code>601126</code></td><td><span class="pct">+10.00%</span></td></tr>
+      <tr><td>思源电气</td><td><code>002028</code></td><td><span class="pct">+3.78%</span></td><td colspan="3"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>③ 算力网（15 只）</h3>
+    <table>
+      <tr><th>名称</th><th>代码</th><th>区间涨幅</th><th>名称</th><th>代码</th><th>区间涨幅</th></tr>
+      <tr><td>中科曙光</td><td><code>603019</code></td><td><span class="pct">+1.61%</span></td><td>润泽科技</td><td><code>300442</code></td><td><span class="pct">+2.49%</span></td></tr>
+      <tr><td>浪潮信息</td><td><code>000977</code></td><td><span class="pct">+3.25%</span></td><td>奥飞数据</td><td><code>300738</code></td><td><span class="pct">+3.58%</span></td></tr>
+      <tr><td>工业富联</td><td><code>601138</code></td><td><span class="pct">+3.22%</span></td><td>宝信软件</td><td><code>600845</code></td><td><span class="pct">+1.64%</span></td></tr>
+      <tr><td>寒武纪</td><td><code>688256</code></td><td><span class="pct">+6.48%</span></td><td>英维克</td><td><code>002837</code></td><td><span class="pct">+5.29%</span></td></tr>
+      <tr><td>中际旭创</td><td><code>300308</code></td><td><span class="pct">+4.70%</span></td><td>申菱环境</td><td><code>301018</code></td><td><span class="pct">+9.09%</span></td></tr>
+      <tr><td>新易盛</td><td><code>300502</code></td><td><span class="pct">+5.70%</span></td><td>沪电股份</td><td><code>002463</code></td><td><span class="pct">+7.98%</span></td></tr>
+      <tr><td>天孚通信</td><td><code>300394</code></td><td><span class="pct">+6.64%</span></td><td>深南电路</td><td><code>002916</code></td><td><span class="pct">+5.51%</span></td></tr>
+      <tr><td>华工科技</td><td><code>000988</code></td><td><span class="pct">+4.32%</span></td><td colspan="3"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>④ 新一代通信网（9 只）</h3>
+    <table>
+      <tr><th>名称</th><th>代码</th><th>区间涨幅</th><th>名称</th><th>代码</th><th>区间涨幅</th></tr>
+      <tr><td>中兴通讯</td><td><code>000063</code></td><td><span class="pct">+1.45%</span></td><td>中国卫通</td><td><code>601698</code></td><td><span class="pct">+2.26%</span></td></tr>
+      <tr><td>烽火通信</td><td><code>600498</code></td><td><span class="pct">+10.52%</span></td><td>中国卫星</td><td><code>600118</code></td><td><span class="pct">+3.22%</span></td></tr>
+      <tr><td>长飞光纤</td><td><code>601869</code></td><td><span class="pct">+4.48%</span></td><td>海格通信</td><td><code>002465</code></td><td><span class="pct">+2.86%</span></td></tr>
+      <tr><td>中天科技</td><td><code>600522</code></td><td><span class="pct">+5.42%</span></td><td>信科移动</td><td><code>688387</code></td><td><span class="pct">+5.00%</span></td></tr>
+      <tr><td>光迅科技</td><td><code>002281</code></td><td><span class="pct">+5.58%</span></td><td colspan="3"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>⑤ 城市地下管网（10 只）</h3>
+    <table>
+      <tr><th>名称</th><th>代码</th><th>区间涨幅</th><th>名称</th><th>代码</th><th>区间涨幅</th></tr>
+      <tr><td>隧道股份</td><td><code>600820</code></td><td><span class="pct">+2.40%</span></td><td>新兴铸管</td><td><code>000778</code></td><td><span class="pct">+0.81%</span></td></tr>
+      <tr><td>中国建筑</td><td><code>601668</code></td><td><span class="pct">+1.35%</span></td><td>东方雨虹</td><td><code>002271</code></td><td><span class="pct">+2.90%</span></td></tr>
+      <tr><td>中国中铁</td><td><code>601390</code></td><td><span class="pct">+1.38%</span></td><td>数字政通</td><td><code>300075</code></td><td><span class="pct">+2.32%</span></td></tr>
+      <tr><td>国统股份</td><td><code>002205</code></td><td><span class="pct">+3.29%</span></td><td>汉威科技</td><td><code>300007</code></td><td><span class="pct">+2.53%</span></td></tr>
+      <tr><td>纳川股份(*ST纳川)</td><td><code>300198</code></td><td><span class="pct">+4.66%</span></td><td>辰安科技</td><td><code>300523</code></td><td><span class="pct">+3.26%</span></td></tr>
+      <tr><td>伟星新材</td><td><code>002372</code></td><td><span class="pct">+3.65%</span></td><td colspan="3"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>⑥ 现代物流网（11 只）</h3>
+    <table>
+      <tr><th>名称</th><th>代码</th><th>区间涨幅</th><th>名称</th><th>代码</th><th>区间涨幅</th></tr>
+      <tr><td>顺丰控股</td><td><code>002352</code></td><td><span class="pct">+0.91%</span></td><td>今天国际</td><td><code>300532</code></td><td><span class="pct">+2.89%</span></td></tr>
+      <tr><td>中国外运</td><td><code>601598</code></td><td><span class="pct">+2.86%</span></td><td>音飞储存</td><td><code>603066</code></td><td><span class="pct">+2.20%</span></td></tr>
+      <tr><td>中储股份</td><td><code>600787</code></td><td><span class="pct">+2.19%</span></td><td>诺力股份</td><td><code>603611</code></td><td><span class="pct">+1.79%</span></td></tr>
+      <tr><td>冰轮环境</td><td><code>000811</code></td><td><span class="pct">+7.49%</span></td><td>传化智联</td><td><code>002010</code></td><td><span class="pct">+1.71%</span></td></tr>
+      <tr><td>雪人股份(雪人集团)</td><td><code>002639</code></td><td><span class="pct">+4.24%</span></td><td>华贸物流</td><td><code>603128</code></td><td><span class="pct">+1.31%</span></td></tr>
+      <tr><td>冰山冷热</td><td><code>000530</code></td><td><span class="pct">+2.86%</span></td><td colspan="3"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>⑦ 资金面 / 订单兑现额外提及（6 只）</h3>
+    <table>
+      <tr><th>名称</th><th>代码</th><th>区间涨幅</th><th>名称</th><th>代码</th><th>区间涨幅</th></tr>
+      <tr><td>密尔克卫</td><td><code>603713</code></td><td><span class="pct">+3.31%</span></td><td>晶科科技</td><td><code>601778</code></td><td><span class="pct">+3.10%</span></td></tr>
+      <tr><td>协创数据</td><td><code>300857</code></td><td><span class="pct">+3.63%</span></td><td>陕建股份</td><td><code>600248</code></td><td><span class="pct">+2.76%</span></td></tr>
+      <tr><td>汉缆股份</td><td><code>002498</code></td><td><span class="pct">+3.05%</span></td><td>大连电瓷</td><td><code>002606</code></td><td><span class="pct">+3.96%</span></td></tr>
+    </table>
+  </div>
+
+  <h2>三、逐网受益链条与标的分层（标后附区间涨幅）</h2>
+  <div class="card">
+    <h3>① 国家水网（≈6 万亿）— 调水 / 防洪 / 城乡供水</h3>
+    <table>
+      <tr><th class="rank">分层</th><th>标的（A股代码）</th><th>受益逻辑 / 受益路径</th></tr>
+      <tr><td class="rank">工程总包</td><td>中国电建 <code>601669</code><span class="pct">+0.86%</span> · 中国能建 <code>601868</code><span class="pct">+0.79%</span> · 粤水电 <code>002060</code><span class="pct">+1.23%</span></td><td>重大水利工程核心承建方，跨网协同（兼顾电网）优势明显</td></tr>
+      <tr><td class="rank">管材 PCCP</td><td>青龙管业 <code>002457</code><span class="pct">+3.71%</span> · 韩建河山 <code>603616</code><span class="pct">+4.10%</span> · 龙泉股份 <code>002671</code><span class="pct">+2.80%</span></td><td>输水管道直接量增；青龙管业已中标宁夏/广西灌区合计超 7.8 亿</td></tr>
+      <tr><td class="rank">给排水</td><td>伟星新材 <code>002372</code><span class="pct">+3.65%</span> · 大禹节水 <code>300021</code><span class="pct">+3.28%</span></td><td>城乡供水管网改造，零售+工程双轮；机构 8 月调研 84 家居首</td></tr>
+      <tr><td class="rank">智慧水务</td><td>威派格 <code>603956</code><span class="pct">+3.19%</span> · 和达科技 <code>688296</code><span class="pct">+7.85%</span> · 碧水源 <code>300070</code><span class="pct">+1.74%</span></td><td>水务数字化运维、水处理；政策推动"智水"升级</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>② 新型电网（≈5 万亿）— 特高压 / 源网荷储 / 智能配网</h3>
+    <table>
+      <tr><th class="rank">分层</th><th>标的（A股代码）</th><th>受益逻辑 / 受益路径</th></tr>
+      <tr><td class="rank">调度龙头</td><td>国电南瑞 <code>600406</code><span class="pct">+1.17%</span></td><td>电网二次设备/调度/柔直全栈龙头，订单确定性最强（电网 ETF 第一大权重）</td></tr>
+      <tr><td class="rank">特高压主网</td><td>平高电气 <code>600312</code><span class="pct">+4.98%</span> · 特变电工 <code>600089</code><span class="pct">+1.20%</span> · 中国西电 <code>601179</code><span class="pct">+2.42%</span> · 许继电气 <code>000400</code><span class="pct">+2.10%</span></td><td>特高压开关/主网设备，西电东送、沙戈荒外送直接拉动</td></tr>
+      <tr><td class="rank">配网智能化</td><td>东方电子 <code>000682</code><span class="pct">+1.63%</span> · 四方股份 <code>601126</code><span class="pct">+10.00%</span> · 思源电气 <code>002028</code><span class="pct">+3.78%</span></td><td>配电网投资占比升至约 6 成，智能终端量增</td></tr>
+      <tr><td class="rank">海缆 / 储能</td><td>东方电缆 <code>603606</code><span class="pct">+4.21%</span> · 亨通光电 <code>600487</code><span class="pct">+6.16%</span> · 阳光电源 <code>300274</code><span class="pct">+4.40%</span> · 宁德时代 <code>300750</code><span class="pct">+3.84%</span></td><td>海风送出、源网荷储、储能装机 3 亿千瓦目标</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>③ 算力网（≈4 万亿）— 智算中心 / 服务器 / 光模块 / 液冷</h3>
+    <table>
+      <tr><th class="rank">分层</th><th>标的（A股代码）</th><th>受益逻辑 / 受益路径</th></tr>
+      <tr><td class="rank">服务器整机</td><td>中科曙光 <code>603019</code><span class="pct">+1.61%</span> · 浪潮信息 <code>000977</code><span class="pct">+3.25%</span> · 工业富联 <code>601138</code><span class="pct">+3.22%</span></td><td>曙光 8000 十万卡集群落成；工业富联 800G 交换机出货同比+1.4 倍</td></tr>
+      <tr><td class="rank">AI 芯片</td><td>寒武纪 <code>688256</code><span class="pct">+6.48%</span></td><td>国产算力规模化替代；8 月融资净买入 6.84 亿居前</td></tr>
+      <tr><td class="rank">光模块</td><td>中际旭创 <code>300308</code><span class="pct">+4.70%</span> · 新易盛 <code>300502</code><span class="pct">+5.70%</span> · 天孚通信 <code>300394</code><span class="pct">+6.64%</span> · 华工科技 <code>000988</code><span class="pct">+4.32%</span></td><td>1.6T/800G 量价齐升；天孚通信 8 月涨幅约 61.5%</td></tr>
+      <tr><td class="rank">IDC / 液冷</td><td>润泽科技 <code>300442</code><span class="pct">+2.49%</span> · 奥飞数据 <code>300738</code><span class="pct">+3.58%</span> · 宝信软件 <code>600845</code><span class="pct">+1.64%</span> · 英维克 <code>002837</code><span class="pct">+5.29%</span> · 申菱环境 <code>301018</code><span class="pct">+9.09%</span></td><td>智算中心扩容+液冷渗透率提升；供配电/散热刚需</td></tr>
+      <tr><td class="rank">PCB</td><td>沪电股份 <code>002463</code><span class="pct">+7.98%</span> · 深南电路 <code>002916</code><span class="pct">+5.51%</span></td><td>高速 PCB 随 AI 服务器放量</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>④ 新一代通信网（≈2 万亿）— 5G-A/6G / 光纤 / 卫星互联网</h3>
+    <table>
+      <tr><th class="rank">分层</th><th>标的（A股代码）</th><th>受益逻辑 / 受益路径</th></tr>
+      <tr><td class="rank">主设备</td><td>中兴通讯 <code>000063</code><span class="pct">+1.45%</span> · 烽火通信 <code>600498</code><span class="pct">+10.52%</span></td><td>5G-A/6G 设备龙头，运营商 capex 向算力网络倾斜</td></tr>
+      <tr><td class="rank">光纤光缆</td><td>长飞光纤 <code>601869</code><span class="pct">+4.48%</span> · 中天科技 <code>600522</code><span class="pct">+5.42%</span> · 亨通光电 <code>600487</code><span class="pct">+6.16%</span></td><td>光纤网络扩容+海缆，空天地一体化受益</td></tr>
+      <tr><td class="rank">光器件</td><td>光迅科技 <code>002281</code><span class="pct">+5.58%</span></td><td>光通信器件国产替代</td></tr>
+      <tr><td class="rank">卫星互联网</td><td>中国卫通 <code>601698</code><span class="pct">+2.26%</span> · 中国卫星 <code>600118</code><span class="pct">+3.22%</span> · 海格通信 <code>002465</code><span class="pct">+2.86%</span> · 信科移动 <code>688387</code><span class="pct">+5.00%</span></td><td>低轨卫星组网，6G 空天地融合核心环节</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>⑤ 城市地下管网（≈5 万亿）— 管廊 / 施工 / 管材 / 监测</h3>
+    <table>
+      <tr><th class="rank">分层</th><th>标的（A股代码）</th><th>受益逻辑 / 受益路径</th></tr>
+      <tr><td class="rank">工程施工</td><td>隧道股份 <code>600820</code><span class="pct">+2.40%</span> · 中国建筑 <code>601668</code><span class="pct">+1.35%</span> · 中国中铁 <code>601390</code><span class="pct">+1.38%</span></td><td>综合管廊建设主力，城市更新订单来源</td></tr>
+      <tr><td class="rank">管材 / 铸管</td><td>伟星新材 <code>002372</code><span class="pct">+3.65%</span> · 国统股份 <code>002205</code><span class="pct">+3.29%</span> · 纳川股份 <code>300198</code><span class="pct">+4.66%</span> · 新兴铸管 <code>000778</code><span class="pct">+0.81%</span></td><td>球墨铸管/塑料管更新刚需；新兴铸管为铸管龙头</td></tr>
+      <tr><td class="rank">防水</td><td>东方雨虹 <code>002271</code><span class="pct">+2.90%</span></td><td>地下工程防水防腐需求</td></tr>
+      <tr><td class="rank">智慧监测</td><td>数字政通 <code>300075</code><span class="pct">+2.32%</span> · 汉威科技 <code>300007</code><span class="pct">+2.53%</span> · 辰安科技 <code>300523</code><span class="pct">+3.26%</span></td><td>城市生命线平台、传感器在线监测</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>⑥ 现代物流网（≈2 万亿）— 枢纽 / 冷链 / 智能仓储</h3>
+    <table>
+      <tr><th class="rank">分层</th><th>标的（A股代码）</th><th>受益逻辑 / 受益路径</th></tr>
+      <tr><td class="rank">枢纽运营</td><td>顺丰控股 <code>002352</code><span class="pct">+0.91%</span> · 中国外运 <code>601598</code><span class="pct">+2.86%</span> · 中储股份 <code>600787</code><span class="pct">+2.19%</span></td><td>国家物流枢纽+多式联运；降低社会物流成本主线</td></tr>
+      <tr><td class="rank">冷链装备</td><td>冰轮环境 <code>000811</code><span class="pct">+7.49%</span> · 雪人股份 <code>002639</code><span class="pct">+4.24%</span> · 冰山冷热 <code>000530</code><span class="pct">+2.86%</span></td><td>105 个骨干冷链基地设备需求</td></tr>
+      <tr><td class="rank">智能仓储</td><td>今天国际 <code>300532</code><span class="pct">+2.89%</span> · 音飞储存 <code>603066</code><span class="pct">+2.20%</span> · 诺力股份 <code>603611</code><span class="pct">+1.79%</span></td><td>自动化立体库、仓储物流设备</td></tr>
+      <tr><td class="rank">智慧物流</td><td>传化智联 <code>002010</code><span class="pct">+1.71%</span> · 华贸物流 <code>603128</code><span class="pct">+1.31%</span></td><td>物流平台软件、跨境供应链</td></tr>
+    </table>
+  </div>
+
+  <h2>四、资金面与市场热度（2026 年 8 月以来）</h2>
+  <div class="two">
+    <div class="card">
+      <h3>机构调研家数（前 3）</h3>
+      <table>
+        <tr><th>标的</th><th>代码</th><th>调研家数</th><th>区间涨幅</th></tr>
+        <tr><td>密尔克卫</td><td><code>603713</code></td><td>84</td><td><span class="pct">+3.31%</span></td></tr>
+        <tr><td>伟星新材</td><td><code>002372</code></td><td>84</td><td><span class="pct">+3.65%</span></td></tr>
+        <tr><td>天孚通信</td><td><code>300394</code></td><td>67</td><td><span class="pct">+6.64%</span></td></tr>
+      </table>
+      <div class="src">来源：证券时报·数据宝，2026-08</div>
+    </div>
+    <div class="card">
+      <h3>融资净买入（前 3，亿元）</h3>
+      <table>
+        <tr><th>标的</th><th>代码</th><th>净买入</th><th>区间涨幅</th></tr>
+        <tr><td>协创数据</td><td><code>300857</code></td><td>6.95</td><td><span class="pct">+3.63%</span></td></tr>
+        <tr><td>寒武纪</td><td><code>688256</code></td><td>6.84</td><td><span class="pct">+6.48%</span></td></tr>
+        <tr><td>浪潮信息</td><td><code>000977</code></td><td>6.24</td><td><span class="pct">+3.25%</span></td></tr>
+      </table>
+      <div class="src">来源：证券时报·数据宝，2026-08；资金可见偏好集中于算力/通信新基建</div>
+    </div>
+  </div>
+
+  <h2>五、订单兑现亮点（已公告，2026 年）</h2>
+  <div class="card">
+    <table>
+      <tr><th>网</th><th>公司</th><th>代码</th><th>区间涨幅</th><th>进展</th></tr>
+      <tr><td>算力网</td><td>晶科科技</td><td><code>601778</code></td><td><span class="pct">+3.10%</span></td><td>宁夏中卫 1GW 算力中心，总投资约 245 亿元</td></tr>
+      <tr><td>算力网</td><td>陕建股份</td><td><code>600248</code></td><td><span class="pct">+2.76%</span></td><td>甘肃白银云境智算中心 EPC 中标 11.56 亿元</td></tr>
+      <tr><td>水网</td><td>青龙管业</td><td><code>002457</code></td><td><span class="pct">+3.71%</span></td><td>宁夏/广西灌区工程中标合计超 7.8 亿元</td></tr>
+      <tr><td>水网</td><td>韩建河山</td><td><code>603616</code></td><td><span class="pct">+4.10%</span></td><td>崇左左江治旱工程 PCCP 管件合同 4.4 亿元</td></tr>
+      <tr><td>新型电网</td><td>汉缆股份</td><td><code>002498</code></td><td><span class="pct">+3.05%</span></td><td>南网主网线路材料框架中标约 7.17 亿元</td></tr>
+      <tr><td>新型电网</td><td>大连电瓷</td><td><code>002606</code></td><td><span class="pct">+3.96%</span></td><td>中报预增 201%–286%（特高压需求释放）</td></tr>
+    </table>
+    <div class="src">来源：公司公告 / 中国证券报 / 新华社，2026-08</div>
+  </div>
+
+  <h2>六、风险与反证（避免"全链条受益"误区）</h2>
+  <div class="card">
+    <ul class="risk">
+      <li><b>政策预期前置：</b>"六张网"自 2026 年 4 月政治局会议后已持续性定价，发布/细则落地后存在兑现回落风险，不宜追高。</li>
+      <li><b>伪受益识别：</b>部分公司仅"沾边"（如单纯名字关联、业务占比低），需核对收入直接受益程度，警惕概念映射标的。</li>
+      <li><b>回款与财政约束：</b>水网、地下管网多为政府/央企项目，回款周期长、地方财政承压，需观察超长期特别国债与政策性金融工具落地节奏。</li>
+      <li><b>算力供给分歧：</b>智算中心"产能过剩 vs 供不应求"分歧激烈，需跟踪上架率与 AI 商用变现节奏。</li>
+      <li><b>受益不均衡：</b>券商观点普遍认为成长弹性最强在算力网/通信网，投资体量最大、能见度最高在新型电网；传统三网（水/管网/物流）更看订单兑现与估值安全边际。</li>
+    </ul>
+  </div>
+
+  <div class="disc">
+    <b>免责声明：</b>以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。
+  </div>
+</div>
+
+<script>
+echarts.init(document.getElementById('scaleChart')).setOption({
+  tooltip: { trigger: 'axis', formatter: '{b}<br/>投资规模: {c} 万亿元' },
+  grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+  xAxis: { type: 'category', data: ['国家水网','新型电网','城市地下管网','算力网','新一代通信网','现代物流网'], axisLabel: { interval: 0, fontSize: 12 } },
+  yAxis: { type: 'value', name: '万亿元' },
+  series: [{
+    type: 'bar',
+    data: [6,5,5,4,2,2],
+    itemStyle: { color: '#c0392b' },
+    label: { show: true, position: 'top', formatter: '{c}万亿' }
+  }]
+});
+
+echarts.init(document.getElementById('topChart')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: +{c}%' },
+  grid: { left: '3%', right: '6%', bottom: '3%', top: '6%', containLabel: true },
+  xAxis: { type: 'value', name: '%', axisLabel: { formatter: '{value}%' } },
+  yAxis: { type: 'category', inverse: true, data: ['信科移动','英维克','中天科技','深南电路','光迅科技','新易盛','亨通光电','寒武纪','天孚通信','冰轮环境','和达科技','沪电股份','申菱环境','四方股份','烽火通信'] },
+  series: [{
+    type: 'bar',
+    data: [5.00,5.29,5.42,5.51,5.58,5.70,6.16,6.48,6.64,7.49,7.85,7.98,9.09,10.00,10.52],
+    itemStyle: { color: '#c0392b' },
+    label: { show: true, position: 'right', formatter: '+{c}%' }
+  }]
+});
+</script>
+</body>
+</html>
